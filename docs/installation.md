@@ -4,7 +4,7 @@
 
 Four steps: **get a token → configure MCP → install Skills → verify**. About 5 minutes in total.
 
-> Prerequisite: an **AI assistant that supports MCP**. The simplest and most recommended is **Claude** (Desktop app or Code CLI); ChatGPT Codex, Cherry Studio, Coze, OpenClaw, Hermes, Cursor, Cline, and others are also supported. For China-based users, **WorkBuddy** is recommended.
+> Prerequisite: an **AI assistant that supports MCP**. The simplest and most recommended is **Claude** (Desktop app or Code CLI); ChatGPT Codex, OpenClaw, Hermes, Cursor, Cline, Cherry Studio, and other MCP-compatible clients are also supported.
 
 ---
 
@@ -27,7 +27,7 @@ Four steps: **get a token → configure MCP → install Skills → verify**. Abo
 
 ### Option 1 · One-message setup (recommended)
 
-In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cherry Studio, Coze, etc.), send:
+In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cursor, etc.), send:
 
 ```text
 Set up Xnurta MCP and install its companion Skills. Complete these steps in order:
@@ -43,7 +43,6 @@ It will configure, verify, and install the required Skills automatically — a l
 
 - **Claude**: open Claude → switch to the **Code tab** → paste the message above.
 - **ChatGPT Codex**: send the message to Codex directly (it writes to `~/.codex/config.toml`).
-- **Cherry Studio / Coze / WorkBuddy**: send it to the corresponding agent in a conversation.
 
 If your client doesn't let the AI configure itself, follow the manual setup below.
 
@@ -107,7 +106,7 @@ mcp_servers:
 
 Then run `/reload-mcp` inside Hermes.
 
-#### Other MCP clients (Cursor, Cline, etc.)
+#### Other MCP clients (Cursor, Cline, Cherry Studio, etc.)
 
 Add a remote / Streamable HTTP server in the client's MCP settings with the URL above and an `Authorization: Bearer <YOUR_TOKEN>` header.
 
@@ -143,7 +142,7 @@ Skills live in this repo's [`skills/`](../skills/) directory, in two tiers:
 Pick the installation route that matches your assistant:
 
 - **Agents that can act on their own** (Claude Code, ChatGPT Codex, Cursor, etc.): point the AI at the skill directories and say "install the 3 required Skills"; add optional Skills as needed.
-- **Chat / UI-based assistants** (Claude web or desktop app, Cherry Studio, Coze, etc.): add them manually in each client's settings (in Claude, for example: Settings → Skills → upload, one by one).
+- **Chat / UI-based assistants** (Claude web or desktop app, etc.): add them manually in each client's settings (in Claude, for example: Settings → Skills → upload, one by one).
 
 ---
 

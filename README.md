@@ -33,17 +33,14 @@ The current version v1.0.0 supports data query only. Managed-group management an
 
 ## Supported AI assistants
 
-All of the following have passed integration testing and acceptance:
+Xnurta MCP works with any MCP-compatible AI assistant. Recommended and fully tested:
 
-| AI assistant | Region | Recommendation |
-|--------------|--------|----------------|
-| **Claude Code** | Global | ⭐ Recommended |
-| **ChatGPT** | Global | ⭐ Recommended |
-| **WorkBuddy** | China | ⭐ Recommended for China-based users |
-| Hermes | China | |
-| Cherry Studio | China | |
-| Coze | China | |
-| OpenClaw | China | |
+| AI assistant | Recommendation |
+|--------------|----------------|
+| **Claude Code** | ⭐ Recommended |
+| **ChatGPT** | ⭐ Recommended |
+
+Other MCP-compatible clients — Cursor, Cline, Claude Desktop, OpenClaw, Hermes, Cherry Studio, and more — work with the standard configuration in the [Installation Guide](docs/installation.md).
 
 ---
 
