@@ -38,7 +38,7 @@ Advanced analyses built on the three required Skills — add as needed once thos
 ## Installation
 
 - **Agents that can act on their own** (Claude Code, ChatGPT Codex, Cursor, etc.): point the AI at a skill directory and say "install this". Install the 3 required Skills first, then add optional ones as needed.
-- **Chat / UI-based assistants** (Claude web or desktop app, Cherry Studio, Coze, etc.): add them manually in each client's settings (in Claude, for example: Settings → Skills → upload, one by one).
+- **Chat / UI-based assistants** (Claude web or desktop app, etc.): add them manually in each client's settings (in Claude, for example: Settings → Skills → upload, one by one).
 
 ## Directory layout
 

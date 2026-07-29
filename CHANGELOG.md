@@ -2,7 +2,7 @@
 
 This file tracks version changes for Xnurta MCP Skills and the accompanying documentation.
 
-## [1.0.0] - 2026-07-28
+## [1.0.0] - 2026-07-29
 
 First release (matching MCP Server v1.0.0 · Data Query).
 
@@ -18,4 +18,4 @@ First release (matching MCP Server v1.0.0 · Data Query).
   - **ads-structure-analysis** `0.2.3` — ad structure analysis
   - **product-diagnosis** `0.1.11` — product diagnosis
 - `skills/manifest.json` machine-readable version list with a `required` flag
-- README and installation guide (Claude / ChatGPT Codex / WorkBuddy / Cherry Studio / Coze / OpenClaw / Hermes / Cursor client setup)
+- README and installation guide (Claude / ChatGPT Codex / OpenClaw / Hermes / Cursor / Cline / Cherry Studio client setup)
