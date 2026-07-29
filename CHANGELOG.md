@@ -1,0 +1,21 @@
+# Changelog
+
+This file tracks version changes for Xnurta MCP Skills and the accompanying documentation.
+
+## [1.0.0] - 2026-07-28
+
+First release (matching MCP Server v1.0.0 · Data Query).
+
+### Added
+
+- 3 **required Skills**:
+  - **query-ads-performance** `1.0.0` — ad performance queries, mapped to MCP tool `get_ads_perf` (scope: `amazon_sa:performance:read`)
+  - **query-entity-metadata** `1.0.0` — entity configuration / metadata queries, mapped to MCP tool `get_entity_metadata` (scope: `amazon_sa:ads_configuration:read`)
+  - **query-operation-log** `1.0.0` — operation log queries, mapped to MCP tool `get_operation_log` (scope: `amazon_sa:ads_logs:read`)
+- 4 **optional Skills** (under `skills/optional/`, add as needed after the required ones):
+  - **weekly-ads-report** `0.9.4` — weekly ads report
+  - **monthly-ads-report** `0.5.6` — monthly ads report
+  - **ads-structure-analysis** `0.2.3` — ad structure analysis
+  - **product-diagnosis** `0.1.11` — product diagnosis
+- `skills/manifest.json` machine-readable version list with a `required` flag
+- README and installation guide (Claude / ChatGPT Codex / WorkBuddy / Cherry Studio / Coze / OpenClaw / Hermes / Cursor client setup)
