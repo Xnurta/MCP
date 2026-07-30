@@ -1,6 +1,6 @@
 # Xnurta MCP Installation Guide
 
-> **🤖 To AI Agents: if you are executing this guide on behalf of a user, "configure MCP" and "install Skills" are one single task.** After the MCP connection is verified, you MUST proceed to install the 3 required Skills (the [`skills/`](../skills/) directory — no need to ask the user), then introduce each of the 4 optional Skills under [`skills/optional/`](../skills/optional/) and ask the user whether to install them. Configuring the connection without installing Skills means the task is incomplete.
+> **🤖 To AI Agents: if you are executing this guide on behalf of a user, "configure MCP" and "install Skills" are one single task.** After the MCP connection is verified, you MUST proceed to install the 3 required Skills (the [`skills/`](../skills/) directory — no need to ask the user), then introduce each of the 4 Skills marked optional in that directory and ask the user whether to install them. Configuring the connection without installing Skills means the task is incomplete.
 
 Four steps: **get a token → configure MCP → install Skills → verify**. About 5 minutes in total.
 
@@ -36,7 +36,7 @@ Set up Xnurta MCP and install its companion Skills. Complete these steps in orde
 2. Call get_user_authorized_context to verify — a store list means success
 3. From the skills/ directory of https://github.com/Xnurta/MCP, install the
    3 required Skills: query-ads-performance, query-entity-metadata, query-operation-log
-4. Introduce the 4 optional Skills under skills/optional/ and ask me which to install
+4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
 ```
 
 It will configure, verify, and install the required Skills automatically — a list of your authorized stores means the connection succeeded.
@@ -46,7 +46,25 @@ It will configure, verify, and install the required Skills automatically — a l
 
 If your client doesn't let the AI configure itself, follow the manual setup below.
 
-### Option 2 · Manual setup
+### Option 2 · Plugin installation
+
+#### Claude Code
+
+```text
+/plugin marketplace add Xnurta/MCP
+/plugin install xnurta-mcp@xnurta
+```
+
+#### Codex
+
+```bash
+codex plugin marketplace add Xnurta/MCP
+codex plugin add xnurta-mcp@xnurta
+```
+
+Codex can also install from `/plugins` after the marketplace is added. When installation is complete, set `XNURTA_TOKEN` and start a new session; see [Environment variable setup](#environment-variable-setup-xnurta_token).
+
+### Option 3 · Manual setup
 
 > ⚠️ **Configured ≠ done**: after adding the MCP server, be sure to continue with [Step 3 · Install Skills](#step-3--install-skills). The 3 required Skills directly determine query accuracy.
 
@@ -110,6 +128,36 @@ Then run `/reload-mcp` inside Hermes.
 
 Add a remote / Streamable HTTP server in the client's MCP settings with the URL above and an `Authorization: Bearer <YOUR_TOKEN>` header.
 
+### Environment variable setup (`XNURTA_TOKEN`)
+
+Plugin installations and some manual client configurations read the token from `XNURTA_TOKEN`.
+
+#### macOS / Linux
+
+For the current terminal session:
+
+```bash
+export XNURTA_TOKEN=<your-token>
+```
+
+To persist it, add the export to your shell profile such as `~/.zshrc` or `~/.bashrc`.
+
+#### Windows
+
+For the current PowerShell session:
+
+```powershell
+$env:XNURTA_TOKEN = "<your-token>"
+```
+
+To persist it for your user account:
+
+```powershell
+[System.Environment]::SetEnvironmentVariable("XNURTA_TOKEN", "<your-token>", "User")
+```
+
+Restart Claude Code or Codex after setting a persistent environment variable. Never commit the token or paste it into a marketplace manifest.
+
 ### Verify the connection
 
 Ask your assistant to call `get_user_authorized_context`:
@@ -132,7 +180,7 @@ Skills live in this repo's [`skills/`](../skills/) directory, in two tiers:
 - `query-entity-metadata` — entity configuration queries
 - `query-operation-log` — operation log queries
 
-**Optional (4)** — advanced analysis scenarios; add as needed after the required ones (under [`skills/optional/`](../skills/optional/)):
+**Optional (4)** — advanced analysis scenarios; add as needed after the required ones (under [`skills/`](../skills/)):
 
 - `weekly-ads-report` — weekly ads report
 - `monthly-ads-report` — monthly ads report

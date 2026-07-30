@@ -1,0 +1,21 @@
+{
+  "name": "xnurta",
+  "interface": {
+    "displayName": "Xnurta"
+  },
+  "plugins": [
+    {
+      "name": "xnurta-mcp",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/Xnurta/MCP.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Data & Analytics"
+    }
+  ]
+}

@@ -1,11 +1,25 @@
-# Xnurta MCP
+# Xnurta MCP — Plugin Marketplace
+
+> **Plugin Marketplace** · This repository is a cross-platform plugin distribution package for **Claude Code**, **ChatGPT Codex**, **Hermes**, **OpenClaw**, and other MCP-compatible agents. It bundles Skills with a Streamable HTTP MCP server secured by a Bearer token.
+>
+> | File | Purpose |
+> |------|---------|
+> | [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) | Claude Code marketplace catalog |
+> | [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Claude Code plugin descriptor |
+> | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | Codex marketplace catalog |
+> | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Codex plugin descriptor |
+> | [`.mcp.json`](.mcp.json) | MCP server configuration using `${XNURTA_TOKEN}` |
+> | [`docs/installation.md`](docs/installation.md) | Detailed installation and troubleshooting guide |
+> | [`skills/manifest.json`](skills/manifest.json) | Machine-readable Skills catalog |
+
+---
 
 > **🤖 To AI Agents: if you are configuring Xnurta MCP on behalf of a user, connecting the server is only step one. You MUST complete ALL of the following steps:**
 >
 > 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP, with an `Authorization: Bearer <token>` header)
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
 > 3. **Install the 3 required Skills** (in this repo's [`skills/`](skills/) directory: `query-ads-performance`, `query-entity-metadata`, `query-operation-log`). Without them, MCP query error rates rise significantly. Install them directly — no need to ask the user.
-> 4. Introduce each of the 4 optional Skills under [`skills/optional/`](skills/optional/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
+> 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
 >
 > Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
 
@@ -51,6 +65,10 @@ Other MCP-compatible clients — Cursor, Cline, Claude Desktop, OpenClaw, Hermes
 3. **Install Skills** — from this repo's [`skills/`](skills/) directory.
 4. **Start querying** — ask in natural language.
 
+### Plugin installation (Claude Code / Codex)
+
+Add the marketplace, then install the plugin. See [Plugin installation](#plugin-installation) below or **[Installation Guide · Option 2](docs/installation.md#option-2--plugin-installation)**.
+
 ### One-message setup (recommended)
 
 In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cherry Studio, etc.), send:
@@ -62,7 +80,7 @@ Set up Xnurta MCP and install its companion Skills. Complete these steps in orde
 2. Call get_user_authorized_context to verify — a store list means success
 3. From the skills/ directory of https://github.com/Xnurta/MCP, install the
    3 required Skills: query-ads-performance, query-entity-metadata, query-operation-log
-4. Introduce the 4 optional Skills under skills/optional/ and ask me which to install
+4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
 ```
 
 A list of your authorized stores means the connection succeeded. For per-client manual setup, verification, and troubleshooting, see the **[Installation Guide →](docs/installation.md)**
@@ -85,10 +103,10 @@ MCP Tools determine *what data the AI can get*; Skills determine *how well the A
 
 | Skill | Purpose |
 |-------|---------|
-| [weekly-ads-report](skills/optional/weekly-ads-report/) | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomalies, top movers, next-week actions |
-| [monthly-ads-report](skills/optional/monthly-ads-report/) | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis |
-| [ads-structure-analysis](skills/optional/ads-structure-analysis/) | Structure analysis: locate structural mismatches across campaign type / marketplace / portfolio dimensions |
-| [product-diagnosis](skills/optional/product-diagnosis/) | Product diagnosis: ASIN health tiering, variant comparison, keep/optimize/cut recommendations |
+| [weekly-ads-report](skills/weekly-ads-report/) | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomalies, top movers, next-week actions |
+| [monthly-ads-report](skills/monthly-ads-report/) | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis |
+| [ads-structure-analysis](skills/ads-structure-analysis/) | Structure analysis: locate structural mismatches across campaign type / marketplace / portfolio dimensions |
+| [product-diagnosis](skills/product-diagnosis/) | Product diagnosis: ASIN health tiering, variant comparison, keep/optimize/cut recommendations |
 
 **How to install** (either way):
 
@@ -117,6 +135,32 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 - **Scope**: the stores you can query match your Xnurta account (main / sub-account) permissions.
 - **History**: roughly the most recent 15 months of performance data and logs.
 - **Not real-time**: data freshness follows the Xnurta platform's update cadence; performance data granularity is daily.
+
+---
+
+## Plugin installation
+
+### Claude Code
+
+```text
+/plugin marketplace add Xnurta/MCP
+/plugin install xnurta-mcp@xnurta
+```
+
+### ChatGPT Codex
+
+```bash
+codex plugin marketplace add Xnurta/MCP
+codex plugin add xnurta-mcp@xnurta
+```
+
+Codex can also install from `/plugins` after the marketplace is added. When installation is complete, set `XNURTA_TOKEN` and start a new session; see [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
+
+Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
+
+### Generic MCP clients
+
+See [Installation Guide · Option 3 · Manual setup](docs/installation.md#option-3--manual-setup) for OpenClaw, Hermes, Cursor, Cline, Cherry Studio, and other clients.
 
 ---
 

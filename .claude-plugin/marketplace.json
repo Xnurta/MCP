@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "xnurta",
+  "version": "1.0.0",
+  "description": "Xnurta plugin marketplace — Amazon Sponsored Ads intelligence for AI agents",
+  "owner": {
+    "name": "Xnurta"
+  },
+  "plugins": [
+    {
+      "name": "xnurta-mcp",
+      "version": "1.0.0",
+      "description": "Amazon Sponsored Ads intelligence for AI agents: query ad performance, entity metadata, and operation logs via Xnurta MCP.",
+      "author": {
+        "name": "Xnurta"
+      },
+      "source": "./",
+      "category": "analytics",
+      "homepage": "https://github.com/Xnurta/MCP"
+    }
+  ]
+}
