@@ -8,7 +8,7 @@
 > | [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Claude Code plugin descriptor |
 > | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | Codex marketplace catalog |
 > | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Codex plugin descriptor |
-> | [`.mcp.json`](.mcp.json) | MCP server configuration using `${XNURTA_TOKEN}` |
+> | [`.mcp.json`](.mcp.json) | Claude Code MCP server configuration using `${XNURTA_TOKEN}` |
 > | [`docs/installation.md`](docs/installation.md) | Detailed installation and troubleshooting guide |
 > | [`skills/manifest.json`](skills/manifest.json) | Machine-readable Skills catalog |
 
@@ -154,7 +154,7 @@ codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-Codex can also install from `/plugins` after the marketplace is added. When installation is complete, set `XNURTA_TOKEN` and start a new session; see [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. Codex can also install from `/plugins` after the marketplace is added; when installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
 
 Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
 

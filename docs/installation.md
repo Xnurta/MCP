@@ -62,7 +62,7 @@ codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-Codex can also install from `/plugins` after the marketplace is added. When installation is complete, set `XNURTA_TOKEN` and start a new session; see [Environment variable setup](#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. Codex can also install from `/plugins` after the marketplace is added; when installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](#environment-variable-setup-xnurta_token).
 
 ### Option 3 · Manual setup
 

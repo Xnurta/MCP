@@ -20,7 +20,12 @@
     "analytics"
   ],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "mcpServers": {
+    "xnurta-mcp": {
+      "url": "https://mcp.xnurta.com/mcp",
+      "bearer_token_env_var": "XNURTA_TOKEN"
+    }
+  },
   "interface": {
     "displayName": "Xnurta MCP",
     "shortDescription": "Analyze Amazon Sponsored Ads data with Xnurta.",
