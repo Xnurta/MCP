@@ -48,21 +48,45 @@ If your client doesn't let the AI configure itself, follow the manual setup belo
 
 ### Option 2 · Plugin installation
 
-#### Claude Code
+#### Desktop apps (recommended)
+
+##### Claude Desktop · Code mode
+
+1. Select **Customize** in the left sidebar.
+2. In the modal, select **Plugins** in the lower-left corner, then select **Add → Add marketplace** in the upper-right corner.
+3. Select **Add from a repository** and enter `Xnurta/MCP`.
+4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+
+> **Note:** Claude Desktop Code mode does not support the `/plugin` command. It is available only in the Claude Code CLI; use the desktop Plugin manager instead.
+
+##### ChatGPT Desktop · Codex
+
+1. Select **Plugins** in the left sidebar.
+2. Select **Add → Add a marketplace** in the upper-right corner.
+3. Enter `Xnurta/MCP` and add the marketplace.
+4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+
+> **Note:** ChatGPT Desktop Codex does not support `/plugin` or `/plugins`. `/plugins` is available only in Codex CLI; use Plugins in the left sidebar of the desktop app.
+
+Desktop UI references: [Claude Desktop Code mode](https://code.claude.com/docs/en/desktop#install-plugins) · [ChatGPT / Codex Plugins](https://learn.chatgpt.com/docs/plugins)
+
+#### Command-line CLI
+
+##### Claude Code CLI
 
 ```text
 /plugin marketplace add Xnurta/MCP
 /plugin install xnurta-mcp@xnurta
 ```
 
-#### Codex
+##### Codex CLI
 
 ```bash
 codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-The plugin installs the MCP server and all 7 Skills together. Codex can also install from `/plugins` after the marketplace is added; when installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. When installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](#environment-variable-setup-xnurta_token).
 
 ### Option 3 · Manual setup
 

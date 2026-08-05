@@ -67,7 +67,7 @@ Other MCP-compatible clients — Cursor, Cline, Claude Desktop, OpenClaw, Hermes
 
 ### Plugin installation (Claude Code / Codex)
 
-Add the marketplace, then install the plugin. See [Plugin installation](#plugin-installation) below or **[Installation Guide · Option 2](docs/installation.md#option-2--plugin-installation)**.
+Add the marketplace, then install the plugin. Desktop app users should use the Plugins settings; command-line users can use the CLI commands. See [Plugin installation](#plugin-installation) below or **[Installation Guide · Option 2](docs/installation.md#option-2--plugin-installation)**.
 
 ### One-message setup (recommended)
 
@@ -140,21 +140,45 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 
 ## Plugin installation
 
-### Claude Code
+### Desktop apps (recommended)
+
+#### Claude Desktop · Code mode
+
+1. Select **Customize** in the left sidebar.
+2. In the modal, select **Plugins** in the lower-left corner, then select **Add → Add marketplace** in the upper-right corner.
+3. Select **Add from a repository** and enter `Xnurta/MCP`.
+4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+
+> Claude Desktop Code mode does not support the `/plugin` command. `/plugin` is for the Claude Code CLI only; use the desktop Plugin manager instead.
+
+#### ChatGPT Desktop · Codex
+
+1. Select **Plugins** in the left sidebar.
+2. Select **Add → Add a marketplace** in the upper-right corner.
+3. Enter `Xnurta/MCP` and add the marketplace.
+4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+
+> ChatGPT Desktop Codex does not support `/plugin` or `/plugins`. `/plugins` is for Codex CLI only; use Plugins in the left sidebar of the desktop app.
+
+Desktop UI references: [Claude Desktop Code mode](https://code.claude.com/docs/en/desktop#install-plugins) · [ChatGPT / Codex Plugins](https://learn.chatgpt.com/docs/plugins)
+
+### Command-line CLI
+
+#### Claude Code CLI
 
 ```text
 /plugin marketplace add Xnurta/MCP
 /plugin install xnurta-mcp@xnurta
 ```
 
-### ChatGPT Codex
+#### Codex CLI
 
 ```bash
 codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-The plugin installs the MCP server and all 7 Skills together. Codex can also install from `/plugins` after the marketplace is added; when installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. When installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
 
 Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
 
