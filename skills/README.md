@@ -19,10 +19,10 @@ Advanced analyses built on the three required Skills — add as needed once thos
 
 | Skill | Version | Purpose |
 |-------|---------|---------|
-| [weekly-ads-report](weekly-ads-report/) | 0.9.4 | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomaly summary, top movers, next-week actions |
-| [monthly-ads-report](monthly-ads-report/) | 0.5.6 | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis, next-month recommendations |
-| [ads-structure-analysis](ads-structure-analysis/) | 0.2.3 | Structure analysis: break down spend and efficiency by campaign type / marketplace / portfolio / weekday and locate structural mismatches |
-| [product-diagnosis](product-diagnosis/) | 0.1.11 | Product diagnosis: ASIN health tiering, variant comparison, diagnostic cards for underperformers, keep/optimize/cut recommendations |
+| [weekly-ads-report](weekly-ads-report/) | 1.0.0 | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomaly summary, top movers, next-week actions |
+| [monthly-ads-report](monthly-ads-report/) | 1.0.0 | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis, next-month recommendations |
+| [ads-structure-analysis](ads-structure-analysis/) | 1.0.0 | Structure analysis: break down spend and efficiency by campaign type / marketplace / portfolio / weekday and locate structural mismatches |
+| [product-diagnosis](product-diagnosis/) | 1.0.0 | Product diagnosis: ASIN health tiering, variant comparison, diagnostic cards for underperformers, keep/optimize/cut recommendations |
 
 ## Versions
 
