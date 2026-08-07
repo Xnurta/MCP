@@ -83,6 +83,8 @@ Set up Xnurta MCP and install its companion Skills. Complete these steps in orde
 4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
 ```
 
+> **🤖 To AI Agents:** When executing the setup above, write the MCP configuration to the correct config file for your client. Be careful to distinguish between different config file names used by different clients (e.g. `mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.) — do not confuse them.
+
 A list of your authorized stores means the connection succeeded. For per-client manual setup, verification, and troubleshooting, see the **[Installation Guide →](docs/installation.md)**
 
 ---

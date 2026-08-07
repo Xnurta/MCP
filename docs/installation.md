@@ -39,6 +39,8 @@ Set up Xnurta MCP and install its companion Skills. Complete these steps in orde
 4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
 ```
 
+> **🤖 To AI Agents:** When executing the setup above, write the MCP configuration to the correct config file for your client. Be careful to distinguish between different config file names used by different clients (e.g. `mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.) — do not confuse them.
+
 It will configure, verify, and install the required Skills automatically — a list of your authorized stores means the connection succeeded.
 
 - **Claude**: open Claude → switch to the **Code tab** → paste the message above.
@@ -91,6 +93,8 @@ The plugin installs the MCP server and all 7 Skills together. When installation 
 ### Option 3 · Manual setup
 
 > ⚠️ **Configured ≠ done**: after adding the MCP server, be sure to continue with [Step 3 · Install Skills](#step-3--install-skills). The 3 required Skills directly determine query accuracy.
+
+> **🤖 To AI Agents:** The examples below cover multiple clients, each with a different config file name and format. Pick the one that matches the user's actual client and write to the correct file — do not confuse config files from different clients.
 
 #### Claude Code CLI / the Code tab in Claude Desktop
 
