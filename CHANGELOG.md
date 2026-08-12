@@ -2,6 +2,15 @@
 
 This file tracks version changes for Xnurta MCP Skills and the accompanying documentation.
 
+## [1.1.0] - 2026-08-12
+
+Aligns the two required Skills with the 2026-08-11 MCP Tool doc revision.
+
+### Changed
+
+- **query-operation-log** `1.0.0` → `1.1.0` — `get_operation_log` pagination model updated. Two modes decided by `entities`: a single non-`aiGroup` entity now supports **real pagination** (`page` + `pageSize`, loop until `hasNextPage=false`); multi-entity or `aiGroup`-only stays **limit-only** (`limit`/`truncated`). `pageSize` default `50` → `100`, max `200` → `1,000` (`aiGroup`-only `10,000`). Added guidance to steer the user toward a single entity when a limit-only result is truncated.
+- **query-entity-metadata** `1.0.0` → `1.1.0` — documented the new `select` parameter (top-level field projection, ordered, unknown fields ignored via `meta.hint`, no effect on pagination). Noted that enum `{field}Text` companion fields are **not** auto-appended when `select` is used — the `xxxText` field must be listed explicitly.
+
 ## [1.0.0] - 2026-07-29
 
 First release (matching MCP Server v1.0.0 · Data Query).

@@ -1,8 +1,8 @@
 {
   "$schema_note": "Machine-readable manifest of Xnurta MCP official skills. Version fields must stay in sync with each skill's SKILL.md frontmatter.",
   "manifest_version": 1,
-  "updated_at": "2026-08-07",
-  "release": "v1.0.0",
+  "updated_at": "2026-08-12",
+  "release": "v1.1.0",
   "skills": [
     {
       "name": "query-ads-performance",
@@ -15,7 +15,7 @@
     },
     {
       "name": "query-entity-metadata",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "required": true,
       "mcp_tool": "get_entity_metadata",
       "scope": "amazon_sa:ads_configuration:read",
@@ -24,7 +24,7 @@
     },
     {
       "name": "query-operation-log",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "required": true,
       "mcp_tool": "get_operation_log",
       "scope": "amazon_sa:ads_logs:read",
