@@ -16,7 +16,7 @@
 
 > **🤖 To AI Agents: if you are configuring Xnurta MCP on behalf of a user, connecting the server is only step one. You MUST complete ALL of the following steps:**
 >
-> 1. Check which authorization methods the current client supports, briefly explain when OAuth and MCP Token are appropriate, and ask the user to confirm before connecting the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP)
+> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Prefer OAuth; use an MCP Token when the client does not support OAuth or the user explicitly requests it
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
 > 3. **Install the 3 required Skills** (in this repo's [`skills/`](skills/) directory: `query-ads-performance`, `query-entity-metadata`, `query-operation-log`). Without them, MCP query error rates rise significantly. Install them directly — no need to ask the user.
 > 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
@@ -60,7 +60,7 @@ Other MCP-compatible clients — Cursor, Cline, Claude Desktop, OpenClaw, Hermes
 
 ## Quick start (4 steps)
 
-1. **Choose an authorization method and connect MCP** — select OAuth or MCP Token based on client capabilities, the use case, and organizational requirements.
+1. **Choose an authorization method and connect MCP** — OAuth is recommended; MCP Token is also supported.
 2. **Verify the connection** — call `get_user_authorized_context` and confirm the authorized store scope.
 3. **Install Skills** — from this repo's [`skills/`](skills/) directory.
 4. **Start querying** — ask in natural language.
@@ -77,7 +77,8 @@ In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cherr
 Please read the following GitHub repository and follow its instructions to configure Xnurta MCP and install the Skills:
 https://github.com/Xnurta/MCP
 
-Please check which authorization methods are supported by the current client. Briefly explain when OAuth and MCP Token are appropriate, and ask me to confirm which method to use before starting authorization.
+Please use OAuth as the preferred connection method. When authorization is required, open the sign-in page so I can complete the authorization.
+If the current client does not support OAuth, prompt me to use an MCP Token instead.
 
 After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
