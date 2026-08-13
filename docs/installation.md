@@ -12,7 +12,7 @@ Four steps: **choose an authorization method → connect and verify MCP → inst
 
 Xnurta MCP supports OAuth and MCP Token authentication. Both methods use the same Server URL and MCP Tools.
 
-### Option A · OAuth (recommended)
+### Option A · OAuth
 
 Use OAuth with clients that support MCP OAuth. The client opens an Xnurta sign-in and authorization page, so you do not need to create, copy, or store a Token. After authorization, the client maintains the connection automatically.
 
@@ -30,7 +30,7 @@ Use an MCP Token when the client does not support OAuth, for automation scripts,
 
 ## Step 2 · Configure MCP in your AI assistant
 
-Both authorization methods use the same MCP Server. Prefer OAuth; use an MCP Token when the client does not support OAuth or the user explicitly requests it.
+Both authorization methods use the same MCP Server. Choose the method that best fits the client's capabilities, the use case, and your organization's requirements.
 
 - **Server URL**: `https://mcp.xnurta.com/mcp`
 - **Transport**: Streamable HTTP
@@ -43,8 +43,7 @@ In any client whose AI can configure things itself (Claude, ChatGPT Codex, Curso
 Please read the following GitHub repository and follow its instructions to configure Xnurta MCP and install the Skills:
 https://github.com/Xnurta/MCP
 
-Please use OAuth as the preferred connection method. When authorization is required, open the sign-in page so I can complete the authorization.
-If the current client does not support OAuth, prompt me to use an MCP Token instead.
+Please check which authorization methods are supported by the current client. Briefly explain when OAuth and MCP Token are appropriate, and ask me to confirm which method to use before starting authorization.
 
 After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
@@ -106,7 +105,7 @@ The plugin installs the MCP server and all 7 Skills together. When installation 
 
 > **🤖 To AI Agents:** The examples below cover multiple clients, each with a different config file name and format. Pick the one that matches the user's actual client and write to the correct file — do not confuse config files from different clients.
 
-#### OAuth (recommended)
+#### OAuth
 
 ##### Claude Code CLI / the Code tab in Claude Desktop
 
