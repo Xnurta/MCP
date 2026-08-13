@@ -23,7 +23,7 @@
   "mcpServers": {
     "xnurta-mcp": {
       "url": "https://mcp.xnurta.com/mcp",
-      "bearer_token_env_var": "XNURTA_TOKEN"
+      "auth": "oauth"
     }
   },
   "interface": {

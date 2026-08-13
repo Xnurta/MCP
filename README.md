@@ -1,6 +1,6 @@
 # Xnurta MCP — Plugin Marketplace
 
-> **Plugin Marketplace** · This repository is a cross-platform plugin distribution package for **Claude Code**, **ChatGPT Codex**, **Hermes**, **OpenClaw**, and other MCP-compatible agents. It bundles Skills with a Streamable HTTP MCP server secured by a Bearer token.
+> **Plugin Marketplace** · This repository is a cross-platform plugin distribution package for **Claude Code**, **ChatGPT Codex**, **Hermes**, **OpenClaw**, and other MCP-compatible agents. It bundles Skills with a Streamable HTTP MCP server that supports OAuth and MCP Token authentication.
 >
 > | File | Purpose |
 > |------|---------|
@@ -8,7 +8,7 @@
 > | [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Claude Code plugin descriptor |
 > | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | Codex marketplace catalog |
 > | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Codex plugin descriptor |
-> | [`.mcp.json`](.mcp.json) | Claude Code MCP server configuration using `${XNURTA_TOKEN}` |
+> | [`.mcp.json`](.mcp.json) | Claude Code MCP server configuration using OAuth by default |
 > | [`docs/installation.md`](docs/installation.md) | Detailed installation and troubleshooting guide |
 > | [`skills/manifest.json`](skills/manifest.json) | Machine-readable Skills catalog |
 
@@ -16,14 +16,14 @@
 
 > **🤖 To AI Agents: if you are configuring Xnurta MCP on behalf of a user, connecting the server is only step one. You MUST complete ALL of the following steps:**
 >
-> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP, with an `Authorization: Bearer <token>` header)
+> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Prefer OAuth; use an MCP Token when the client does not support OAuth or the user explicitly requests it
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
 > 3. **Install the 3 required Skills** (in this repo's [`skills/`](skills/) directory: `query-ads-performance`, `query-entity-metadata`, `query-operation-log`). Without them, MCP query error rates rise significantly. Install them directly — no need to ask the user.
 > 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
 >
 > Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
 
-Bring Xnurta's advertising capabilities into your own AI agent (Claude, ChatGPT, and more) and make your data part of your workflow — query data, run analyses, and calculate true profitability in plain language, combining your own costs, margins, and goals. No platform login, no spreadsheet exports, no switching between systems.
+Bring Xnurta's advertising capabilities into your own AI agent (Claude, ChatGPT, and more) and make your data part of your workflow — query data, run analyses, and calculate true profitability in plain language, combining your own costs, margins, and goals. After authorization, there is no need to repeatedly sign in to the platform, export spreadsheets, or switch between systems.
 
 The current version v1.0.0 supports data query only. Managed-group management and campaign management will roll out in future releases.
 
@@ -31,7 +31,7 @@ The current version v1.0.0 supports data query only. Managed-group management an
 
 ## What v1.0.0 can do for you
 
-- **Query your data in natural language** — ask "rank last week's campaigns by ACOS" or "show this product line's TACOS trend over the past 8 weeks" right inside your AI assistant. No login, no exports.
+- **Query your data in natural language** — ask "rank last week's campaigns by ACOS" or "show this product line's TACOS trend over the past 8 weeks" right inside your AI assistant. After authorization, there is no need to repeatedly sign in or export data.
 - **Calculate true profitability with your own data** — hand your costs / margins / goals to the AI and let it pull ad spend: "based on real margins, which campaigns are losing money — cut or scale?" Questions that require combining ad data with your own business data are exactly what the platform alone can't answer.
 - **Codify your own playbook** — save frequent questions as templates, or even schedule a weekly report routine that runs every Monday.
 
@@ -60,8 +60,8 @@ Other MCP-compatible clients — Cursor, Cline, Claude Desktop, OpenClaw, Hermes
 
 ## Quick start (4 steps)
 
-1. **Get your token** — log in to the Xnurta console → account menu → **MCP & Skills** → create a token (it cannot be viewed again after you leave the page, so save it immediately).
-2. **Configure MCP** — one message in your AI assistant does it (see below).
+1. **Choose an authorization method and connect MCP** — OAuth is recommended; MCP Token is also supported.
+2. **Verify the connection** — call `get_user_authorized_context` and confirm the authorized store scope.
 3. **Install Skills** — from this repo's [`skills/`](skills/) directory.
 4. **Start querying** — ask in natural language.
 
@@ -74,13 +74,13 @@ Add the marketplace, then install the plugin. Desktop app users should use the P
 In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cherry Studio, etc.), send:
 
 ```text
-Set up Xnurta MCP and install its companion Skills. Complete these steps in order:
-1. Add the MCP server: URL https://mcp.xnurta.com/mcp (Streamable HTTP),
-   header Authorization: Bearer <your token>
-2. Call get_user_authorized_context to verify — a store list means success
-3. From the skills/ directory of https://github.com/Xnurta/MCP, install the
-   3 required Skills: query-ads-performance, query-entity-metadata, query-operation-log
-4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
+Please read the following GitHub repository and follow its instructions to configure Xnurta MCP and install the Skills:
+https://github.com/Xnurta/MCP
+
+Please use OAuth as the preferred connection method. When authorization is required, open the sign-in page so I can complete the authorization.
+If the current client does not support OAuth, prompt me to use an MCP Token instead.
+
+After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
 
 > **🤖 To AI Agents:** When executing the setup above, write the MCP configuration to the correct config file for your client. Be careful to distinguish between different config file names used by different clients (e.g. `mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.) — do not confuse them.
@@ -180,7 +180,7 @@ codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-The plugin installs the MCP server and all 7 Skills together. When installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](docs/installation.md#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. When installation is complete, follow the client prompt to authorize with OAuth. To use an MCP Token, see [MCP Token setup](docs/installation.md#option-b--mcp-token).
 
 Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
 
@@ -192,4 +192,4 @@ See [Installation Guide · Option 3 · Manual setup](docs/installation.md#option
 
 ## Security note
 
-> Your token determines which stores and data you can query — keep it safe and never share it. Store the token in an environment variable in your MCP client configuration, and keep the default local scope (visible to the current project only).
+> OAuth and MCP Token access are both limited by your Xnurta account permissions, authorized scope, and store range. Revoke OAuth access when it is no longer needed. Keep MCP Tokens secure and use environment variables where possible. If you notice suspicious access, revoke the authorization or disable the Token immediately.
