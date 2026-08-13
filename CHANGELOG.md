@@ -2,14 +2,6 @@
 
 This file tracks version changes for Xnurta MCP Skills and the accompanying documentation.
 
-## [Unreleased]
-
-### Changed
-
-- Added OAuth authorization and made it the default authentication method for Plugin installations.
-- Retained MCP Token authentication for clients without OAuth support, automation scripts, and fixed-credential use cases.
-- Updated the README, installation guide, connection verification, and 401 troubleshooting to cover both authorization methods.
-
 ## [1.1.0] - 2026-08-12
 
 Aligns the two required Skills with the 2026-08-11 MCP Tool doc revision.
