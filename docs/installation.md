@@ -2,25 +2,35 @@
 
 > **🤖 To AI Agents: if you are executing this guide on behalf of a user, "configure MCP" and "install Skills" are one single task.** After the MCP connection is verified, you MUST proceed to install the 3 required Skills (the [`skills/`](../skills/) directory — no need to ask the user), then introduce each of the 4 Skills marked optional in that directory and ask the user whether to install them. Configuring the connection without installing Skills means the task is incomplete.
 
-Four steps: **get a token → configure MCP → install Skills → verify**. About 5 minutes in total.
+Four steps: **choose an authorization method → connect and verify MCP → install Skills → start using it**. About 5 minutes in total.
 
 > Prerequisite: an **AI assistant that supports MCP**. The simplest and most recommended is **Claude** (Desktop app or Code CLI); ChatGPT Codex, OpenClaw, Hermes, Cursor, Cline, Cherry Studio, and other MCP-compatible clients are also supported.
 
 ---
 
-## Step 1 · Get your token
+## Step 1 · Choose an authorization method
 
-> ⚠️ Your token determines which stores and data you can query — keep it safe and never share it.
+Xnurta MCP supports OAuth and MCP Token authentication. Both methods use the same Server URL and MCP Tools.
+
+### Option A · OAuth
+
+Use OAuth with clients that support MCP OAuth. The client opens an Xnurta sign-in and authorization page, so you do not need to create, copy, or store a Token. After authorization, the client maintains the connection automatically.
+
+### Option B · MCP Token
+
+Use an MCP Token when the client does not support OAuth, for automation scripts, or when your organization requires a fixed credential.
 
 1. Log in to the Xnurta console, open the account menu in the top-right corner, and go to **MCP & Skills**.
-2. Click **Create Token** and choose the validity period, authorization scope (e.g. Amazon SA), store range, and data permissions you need.
-3. **Copy and save the token immediately** — it cannot be viewed again after you close the dialog; if lost, create a new one.
+2. Click **Create Token** and choose the validity period, authorization scope, store range, and data permissions you need.
+3. **Copy and save the Token immediately.** It cannot be viewed again after you close the dialog; if lost, create a new one.
+
+> ⚠️ An MCP Token is an access credential. Do not share it or paste it into public conversations, documents, or source-code repositories.
 
 ---
 
 ## Step 2 · Configure MCP in your AI assistant
 
-**It comes down to one thing**: give your assistant two values — the Server URL and your token (as an `Authorization: Bearer <token>` header).
+Both authorization methods use the same MCP Server. Choose based on browser-authorization support, the usage environment, and your organization's credential-management requirements.
 
 - **Server URL**: `https://mcp.xnurta.com/mcp`
 - **Transport**: Streamable HTTP
@@ -30,18 +40,19 @@ Four steps: **get a token → configure MCP → install Skills → verify**. Abo
 In any client whose AI can configure things itself (Claude, ChatGPT Codex, Cursor, etc.), send:
 
 ```text
-Set up Xnurta MCP and install its companion Skills. Complete these steps in order:
-1. Add the MCP server: URL https://mcp.xnurta.com/mcp (Streamable HTTP),
-   header Authorization: Bearer <your token>
-2. Call get_user_authorized_context to verify — a store list means success
-3. From the skills/ directory of https://github.com/Xnurta/MCP, install the
-   3 required Skills: query-ads-performance, query-entity-metadata, query-operation-log
-4. Introduce the 4 Skills marked optional under skills/ and ask me which to install
+Please read the following GitHub repository and follow its instructions to configure Xnurta MCP and install the Skills:
+https://github.com/Xnurta/MCP
+
+Xnurta MCP supports both OAuth and MCP Token authentication.
+Please check which authorization methods the current client supports, briefly explain when each method is appropriate, and ask me to confirm which method to use before starting authorization.
+If I choose OAuth, open the sign-in page when authorization is required so I can complete it.
+
+After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
 
 > **🤖 To AI Agents:** When executing the setup above, write the MCP configuration to the correct config file for your client. Be careful to distinguish between different config file names used by different clients (e.g. `mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.) — do not confuse them.
 
-It will configure, verify, and install the required Skills automatically — a list of your authorized stores means the connection succeeded.
+The assistant will configure MCP using the method you confirm, complete authorization, verify the connection, and install the required Skills. A list of your authorized stores means the connection succeeded.
 
 - **Claude**: open Claude → switch to the **Code tab** → paste the message above.
 - **ChatGPT Codex**: send the message to Codex directly (it writes to `~/.codex/config.toml`).
@@ -88,7 +99,7 @@ codex plugin marketplace add Xnurta/MCP
 codex plugin add xnurta-mcp@xnurta
 ```
 
-The plugin installs the MCP server and all 7 Skills together. When installation is complete, set `XNURTA_TOKEN` and start a new session. See [Environment variable setup](#environment-variable-setup-xnurta_token).
+The plugin installs the MCP server and all 7 Skills together. The current Plugin configuration uses `XNURTA_TOKEN`; set the environment variable and start a new session. To use OAuth, follow the OAuth setup below.
 
 ### Option 3 · Manual setup
 
@@ -96,7 +107,52 @@ The plugin installs the MCP server and all 7 Skills together. When installation 
 
 > **🤖 To AI Agents:** The examples below cover multiple clients, each with a different config file name and format. Pick the one that matches the user's actual client and write to the correct file — do not confuse config files from different clients.
 
-#### Claude Code CLI / the Code tab in Claude Desktop
+#### OAuth
+
+##### Claude Desktop & Claude (claude.ai): Custom Connector (no configuration files)
+
+Claude Desktop and Claude on the web can connect directly to a remote MCP server through a Custom Connector. You do not need to edit `mcp.json`, install Node.js, or run `npx`.
+
+1. Open **Settings → Connectors → Add custom connector**.
+   - Claude Desktop: select your account name in the lower-left corner → **Settings → Connectors**.
+   - Claude on the web: open the profile menu → **Settings → Connectors**.
+2. Enter:
+   - **Name**: `Xnurta MCP`
+   - **Remote MCP server URL**: `https://mcp.xnurta.com/mcp`
+3. Select **Add**, then **Connect**.
+4. Sign in to Xnurta in the browser window and confirm authorization.
+5. Return to Claude. When the connector shows **Connected**, the MCP Tools are available immediately; no restart is required.
+
+##### Claude Code CLI / the Code tab in Claude Desktop
+
+```bash
+claude mcp add --transport http xnurta-mcp https://mcp.xnurta.com/mcp
+```
+
+After adding the server, enter `/mcp`, select `xnurta-mcp`, and follow the prompt to authorize in your browser.
+
+##### ChatGPT Codex
+
+```bash
+codex mcp add xnurta-mcp --url https://mcp.xnurta.com/mcp
+codex mcp login xnurta-mcp
+```
+
+The second command opens the Xnurta sign-in page. Complete authorization and return to Codex.
+
+##### Other MCP clients that support OAuth
+
+Add a remote or Streamable HTTP MCP server with this URL:
+
+```text
+https://mcp.xnurta.com/mcp
+```
+
+Select **OAuth**, **Sign in**, or **Authenticate**, depending on the wording used by your client, and complete authorization in your browser.
+
+#### MCP Token
+
+##### Claude Code CLI / the Code tab in Claude Desktop
 
 ```bash
 claude mcp add --transport http xnurta-mcp https://mcp.xnurta.com/mcp --header "Authorization: Bearer <YOUR_TOKEN>"
@@ -104,7 +160,7 @@ claude mcp add --transport http xnurta-mcp https://mcp.xnurta.com/mcp --header "
 
 Keep the default **local scope** (current project folder only) so the token doesn't leak into other projects.
 
-#### Claude Desktop (Chat, when the UI has no Bearer option)
+##### Claude Desktop (Chat, when the UI has no Bearer option)
 
 Edit `claude_desktop_config.json` (Windows: `%APPDATA%\Claude\`; macOS: `~/Library/Application Support/Claude/`), wrap the server with `mcp-remote`, then restart:
 
@@ -120,7 +176,7 @@ Edit `claude_desktop_config.json` (Windows: `%APPDATA%\Claude\`; macOS: `~/Libra
 }
 ```
 
-#### ChatGPT Codex (`~/.codex/config.toml`)
+##### ChatGPT Codex (`~/.codex/config.toml`)
 
 ```toml
 [mcp_servers.xnurta-mcp]
@@ -129,7 +185,7 @@ bearer_token_env_var = "XNURTA_TOKEN"
 http_headers = {}
 ```
 
-#### OpenClaw
+##### OpenClaw
 
 ```bash
 openclaw mcp add xnurta-mcp \
@@ -140,7 +196,7 @@ openclaw mcp add xnurta-mcp \
 
 > ⚠️ Older versions of OpenClaw have a bug where streamable-http does not forward custom Authorization headers (fixed since roughly late April 2026). If you get a 401, upgrade to the latest version first.
 
-#### Hermes (`~/.hermes/config.yaml`)
+##### Hermes (`~/.hermes/config.yaml`)
 
 ```yaml
 mcp_servers:
@@ -152,13 +208,13 @@ mcp_servers:
 
 Then run `/reload-mcp` inside Hermes.
 
-#### Other MCP clients (Cursor, Cline, Cherry Studio, etc.)
+##### Other MCP clients (Cursor, Cline, Cherry Studio, etc.)
 
 Add a remote / Streamable HTTP server in the client's MCP settings with the URL above and an `Authorization: Bearer <YOUR_TOKEN>` header.
 
 ### Environment variable setup (`XNURTA_TOKEN`)
 
-Plugin installations and some manual client configurations read the token from `XNURTA_TOKEN`.
+This environment variable is required only when you use an MCP Token. Codex, Hermes, and other clients can read the Token from `XNURTA_TOKEN` so the credential does not need to be written directly in a configuration file.
 
 #### macOS / Linux
 
@@ -188,12 +244,13 @@ Restart Claude Code or Codex after setting a persistent environment variable. Ne
 
 ### Verify the connection
 
-Ask your assistant to call `get_user_authorized_context`:
+After configuring OAuth or an MCP Token, ask your assistant to call `get_user_authorized_context`:
 
 | Result | Meaning |
 |--------|---------|
 | Returns your userId and authorized profileIds | ✅ Configured successfully |
-| Returns 401 | Token invalid or missing permissions — create a new one |
+| Client prompts you to sign in or authorize | OAuth is not complete; open the page and finish authorization |
+| Returns 401 | OAuth expired or was revoked, or the MCP Token is invalid, expired, disabled, or missing permissions |
 | Timeout | Check your network |
 
 ---
@@ -246,7 +303,7 @@ Four moves: 1) ask the assistant to list your authorized stores → 2) pick a st
 ## FAQ
 
 **Q: Getting 401 Unauthorized?**
-The token is expired, incompletely copied, or missing permissions. Create a new one on the MCP & Skills page, making sure the right stores and data permissions are selected. OpenClaw users on old versions should upgrade the client first.
+First confirm which authorization method you are using. OAuth users should sign in again and confirm that access has not been revoked. MCP Token users should check whether the Token is complete, active, unexpired, and authorized for the required permissions. OpenClaw users on old versions should upgrade the client first.
 
 **Q: How far back can I query?**
 Roughly the most recent 15 months of performance data and operation logs; performance data granularity is daily.
@@ -255,7 +312,7 @@ Roughly the most recent 15 months of performance data and operation logs; perfor
 It follows the Xnurta platform's update cadence — not second-level real-time.
 
 **Q: Which stores can I query?**
-The same ones your Xnurta account (main / sub-account) can access — a token's visibility never exceeds your own account permissions.
+The available stores depend on your Xnurta account permissions and the scope granted through OAuth or the MCP Token. The final visible scope never exceeds your account permissions.
 
 **Q: Can this version change budgets / adjust bids?**
 No. v1.0.0 is read-only; write capabilities (managed-group management, bulk operations, campaign creation) will roll out in future releases.
