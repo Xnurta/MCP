@@ -49,6 +49,9 @@ as `2`=paused once off), `targetType` (`1`=drive growth, `2`=maintain stability,
 
 ### `aiActionSettings` (nested) - EXACT names
 
+Each action-space `xxxStatus` is an on/off switch: `0` = off, `1` = on. It does not
+identify AI versus Rule/RBA; use the corresponding `aiAutomation` mode field for that.
+
 Bid: `bidDaypartStatus`, `bidPerformanceStatus`, `bidPerformanceStrictAcosStatus`,
 `bidAmazonBusinessStatus`, `bidAdPlaceStatus`, `bidAdPlaceRangeStatus`,
 `bidRangeStatus`, `bidRangeType`, `bidRange` (`[min,max]`, null=no limit),
@@ -71,13 +74,27 @@ Word-list fields may appear in some schemas, including `brandedStatus`, `branded
 `targetHarvestBlackListStatus`. They are **currently unsupported**. Do not send any
 word-list status, list ID, match-type, or list-type field.
 
-### `aiAutomation` (nested, AI-mode rule switches) - EXACT names
+### `aiAutomation` (nested, AI/Rule mode fields) - EXACT names
 
-Each `0`=off/`1`=on: `bidDaypartStatus`, `bidPerformanceRuleStatus`,
-`budgetDaypartRuleStatus`, `budgetPerformanceRuleStatus`, `negativeTargetRuleStatus`,
-`pauseCampaignRuleStatus`, `placementAdjustmentRuleStatus`, `targetHarvestRuleStatus`,
-`targetPauseSupplementRuleStatus`. `budgetDaypartExcuteDays` = comma-separated days
-(`1`-`6`=Mon-Sat, `0`=Sun; default `"1,2,3,4,5,6,0"`).
+`aiActionSettings.xxxStatus` controls whether an action space is enabled. When it is
+enabled, the corresponding `aiAutomation` field selects the mode: `0` = AI, `1` =
+Rule/RBA. Create supports **AI mode only**, so create calls may send `0` but must never
+send `1` or attempt to attach an RBA template.
+
+| `aiActionSettings` switch | `aiAutomation` mode field |
+|---|---|
+| `bidDaypartStatus` | `bidDaypartStatus` |
+| `bidPerformanceStatus` | `bidPerformanceRuleStatus` |
+| `budgetDaypartActionStatus` | `budgetDaypartRuleStatus` |
+| `budgetDynamicActionStatus` | `budgetPerformanceRuleStatus` |
+| `negativeTargetActionStatus` | `negativeTargetRuleStatus` |
+| `structPauseCampaignStatus` | `pauseCampaignRuleStatus` |
+| `bidAdPlaceStatus` | `placementAdjustmentRuleStatus` |
+| `targetHarvestActionStatus` | `targetHarvestRuleStatus` |
+| `targetPausedAddStatus` | `targetPauseSupplementRuleStatus` |
+
+`budgetRedistributeActionStatus` and `bidAmazonBusinessStatus` have no Rule mode; only
+their `aiActionSettings` on/off switch applies.
 
 > Coupling rules (open a switch -> must also send its companion fields) are in
 > [`coupling-rules.md`](coupling-rules.md).

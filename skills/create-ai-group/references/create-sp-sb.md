@@ -5,8 +5,10 @@ arguments go inside a single `request` object. **Create mode is triggered by lea
 `aiGroupId` empty (omit it or set `0`)** - a positive `aiGroupId` means edit, which
 belongs to the `edit-ai-group` skill.
 
-Create mode is **AI mode only**: each automation rule just needs an on/off status.
-Rule mode (condition/action configs) is not supported through this tool.
+Create mode is **AI mode only**. Use `aiActionSettings.xxxStatus` for the action-space
+on/off switch. When that action space has a corresponding `aiAutomation` mode field,
+set it to `0` (AI); never set it to `1` (Rule/RBA). Rule condition/action configs and
+template-based creation are not supported through this tool.
 
 ## Required for create
 
@@ -27,7 +29,7 @@ Rule mode (condition/action configs) is not supported through this tool.
 | `campaignNameSign` | int | Campaign-name label: `0`=off, `1`=on |
 | `aiPersonality` | int | `1`-`5`; **must be >=3 when `targetType=3` (volume/冲量)** (front-end rule - MCP won't enforce it) |
 | `preAddCampaignNums` | int | Pre-add campaign count |
-| `aiAutomation` | object | AI-mode rule switches (each `xxxStatus`: `0`=off, `1`=on). See field-reference |
+| `aiAutomation` | object | AI/Rule mode fields: create may use only `0`=AI; never `1`=Rule/RBA. See field-reference |
 | `aiActionSettings` | object | Supported action-space config (bid / struct / budget / target optimization). See field-reference |
 
 Only send `aiAutomation` / `aiActionSettings` fields the user wants to change from

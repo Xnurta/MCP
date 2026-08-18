@@ -16,13 +16,16 @@ and there is no `acosType`/`budgetType` machinery. In **operation-based batch mo
 Flat operations use the type selectors and companion values inside `batchParams`; see
 [`batch.md`](batch.md).
 
-## Mode restriction (AI mode only)
+## Action-space switch and mode restriction
 
-- Editing can switch a group from **Rule mode -> AI mode**, but **not AI -> Rule**.
-- Rule mode (condition/action configs) is not editable through this tool - only the
-  AI-mode switches in `aiActionSettings` / `aiAutomation`.
-- Rule-mode condition/action details are not readable through the current metadata
-  tool. Do not infer or reconstruct an RBA configuration from partial fields.
+- `aiActionSettings.xxxStatus` is the action-space switch: `0` = off, `1` = on.
+- When the switch is on, the corresponding `aiAutomation` mode field is `0` = AI or
+  `1` = Rule/RBA. Use the exact mapping in `field-reference.md`.
+- Editing may set the mode field to `0` to switch **Rule/RBA -> AI**, but must not set
+  it to `1` to switch **AI -> Rule/RBA**.
+- Metadata may expose the on/off and AI/RBA mode indicators, but RBA conditions,
+  schedules, and actions cannot be read or edited through this MCP version. Do not
+  infer, preserve, reconstruct, or modify an RBA template.
 
 ## Editable fields
 
