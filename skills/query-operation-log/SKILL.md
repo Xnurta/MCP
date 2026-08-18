@@ -2,7 +2,7 @@
 name: query-operation-log
 version: 1.1.0
 description: >-
-  Query Xnurta platform operation logs: user and AI action history on ad entities.
+  Query SparkX AI platform operation logs: user and AI action history on ad entities.
   For tracking change history, auditing operations, troubleshooting issues.
   Keywords: operation log, change history, who changed what, bid adjustment records,
   budget adjustment, AI auto-adjustment, pause/enable records, operation audit,

@@ -58,6 +58,39 @@
       "required": false,
       "path": "product-diagnosis",
       "description": "Diagnose ASIN-level health: lifecycle tiering, variant comparison, diagnostic cards for underperformers, keep/optimize/cut recommendations."
+    },
+    {
+      "name": "create-ai-group",
+      "version": "1.0.0",
+      "required": false,
+      "type": "write",
+      "status": "beta",
+      "mcp_tools": ["create_sd_ai_managed_group", "save_sp_sb_ai_managed_group"],
+      "scope": "amazon_sa_managed_group:write",
+      "path": "create-ai-group",
+      "description": "Create an AI managed group - SD via create_sd_ai_managed_group, SP/SB via save_sp_sb_ai_managed_group (create mode). WRITE skill (beta)."
+    },
+    {
+      "name": "edit-ai-group",
+      "version": "1.0.0",
+      "required": false,
+      "type": "write",
+      "status": "beta",
+      "mcp_tools": ["edit_sd_ai_managed_group", "save_sp_sb_ai_managed_group"],
+      "scope": "amazon_sa_managed_group:write",
+      "path": "edit-ai-group",
+      "description": "Edit an AI managed group (single or bulk) - target/ACOS/ROAS/budget, AI on/off, action space. SD via edit_sd_ai_managed_group, SP/SB via save_sp_sb_ai_managed_group (edit mode). WRITE skill (beta)."
+    },
+    {
+      "name": "delete-ai-group",
+      "version": "1.0.0",
+      "required": false,
+      "type": "write",
+      "status": "beta",
+      "mcp_tool": "delete_ai_managed_group",
+      "scope": "amazon_sa_managed_group_delete:write",
+      "path": "delete-ai-group",
+      "description": "Delete (archive) an AI managed group and release or migrate its campaigns. Destructive/irreversible. WRITE skill (beta)."
     }
   ]
 }
