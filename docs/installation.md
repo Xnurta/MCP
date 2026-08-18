@@ -61,27 +61,30 @@ If your client doesn't let the AI configure itself, follow the manual setup belo
 
 ### Option 2 · Plugin installation
 
-#### Desktop apps (recommended)
+#### Desktop apps
 
-##### Claude Desktop · Code mode
+> In regular Claude Desktop or Claude on the web, use the [Custom Connector](#claude-desktop--claude-claudeai-custom-connector-no-configuration-files) below for Chat. A Custom Connector provides MCP Tools only; add Skills separately under **Settings → Skills**. The marketplace flow below applies only to Claude Code Desktop.
 
-1. Select **Customize** in the left sidebar.
-2. In the modal, select **Plugins** in the lower-left corner, then select **Add → Add marketplace** in the upper-right corner.
-3. Select **Add from a repository** and enter `Xnurta/MCP`.
-4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+##### Claude Code Desktop
 
-> **Note:** Claude Desktop Code mode does not support the `/plugin` command. It is available only in the Claude Code CLI; use the desktop Plugin manager instead.
+1. Switch to the **Code** tab.
+2. Select **+ → Plugins → Add plugin** next to the prompt box to open the plugin browser.
+3. Under **Marketplaces**, add a repository and enter `Xnurta/MCP`.
+4. Find and install **Xnurta MCP**. The plugin installs the MCP server and all 7 Skills together.
+
+> **Note:** Claude Code Desktop does not support the `/plugin` command. It is available only in Claude Code CLI; use the desktop plugin browser instead.
 
 ##### ChatGPT Desktop · Codex
 
 1. Select **Plugins** in the left sidebar.
 2. Select **Add → Add a marketplace** in the upper-right corner.
 3. Enter `Xnurta/MCP` and add the marketplace.
-4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**. Installation enables both the MCP server and Skills.
+4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**.
+5. Start a new Codex task. The MCP server and all 7 Skills will be available in the new task.
 
 > **Note:** ChatGPT Desktop Codex does not support `/plugin` or `/plugins`. `/plugins` is available only in Codex CLI; use Plugins in the left sidebar of the desktop app.
 
-Desktop UI references: [Claude Desktop Code mode](https://code.claude.com/docs/en/desktop#install-plugins) · [ChatGPT / Codex Plugins](https://learn.chatgpt.com/docs/plugins)
+Desktop UI references: [Claude Code Desktop](https://code.claude.com/docs/en/desktop#install-plugins) · [ChatGPT / Codex Plugins](https://learn.chatgpt.com/docs/plugins)
 
 #### Command-line CLI
 
@@ -96,8 +99,10 @@ Desktop UI references: [Claude Desktop Code mode](https://code.claude.com/docs/e
 
 ```bash
 codex plugin marketplace add Xnurta/MCP
-codex plugin add xnurta-mcp@xnurta
+codex
 ```
+
+In Codex CLI, enter `/plugins`, select **Xnurta MCP** from the `xnurta` marketplace, install it, and then start a new session.
 
 The plugin installs the MCP server and all 7 Skills together. The current Plugin configuration uses `XNURTA_TOKEN`; set the environment variable and start a new session. To use OAuth, follow the OAuth setup below.
 
