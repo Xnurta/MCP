@@ -118,14 +118,14 @@ The plugin installs the MCP server and all 7 Skills together. The current Plugin
 
 Claude Desktop and Claude on the web can connect directly to a remote MCP server through a Custom Connector. You do not need to edit `mcp.json`, install Node.js, or run `npx`.
 
-1. Open **Settings → Connectors → Add custom connector**.
-   - Claude Desktop: select your account name in the lower-left corner → **Settings → Connectors**.
-   - Claude on the web: open the profile menu → **Settings → Connectors**.
+1. Add the connector based on your plan:
+   - **Pro / Max:** Open **Customize → Connectors → + → Add custom connector**.
+   - **Team / Enterprise:** An organization Owner or Primary Owner opens **Organization settings → Connectors → Add → Custom → Web**. Regular members cannot add it themselves.
 2. Enter:
    - **Name**: `Xnurta MCP`
    - **Remote MCP server URL**: `https://mcp.xnurta.com/mcp`
-3. Select **Add**, then **Connect**.
-4. Sign in to Xnurta in the browser window and confirm authorization.
+3. Select **Add**. Team / Enterprise members then find the connector under **Customize → Connectors** and select **Connect**; Pro / Max users can select **Connect** directly.
+4. Sign in to Xnurta in the browser window and confirm your individual authorization.
 5. Return to Claude. When the connector shows **Connected**, the MCP Tools are available immediately; no restart is required.
 
 ##### Claude Code CLI / the Code tab in Claude Desktop
@@ -154,6 +154,8 @@ https://mcp.xnurta.com/mcp
 ```
 
 Select **OAuth**, **Sign in**, or **Authenticate**, depending on the wording used by your client, and complete authorization in your browser.
+
+> **OAuth compatibility:** The client must follow the MCP OAuth specification and include the `resource` parameter in both the authorization request and token request. Its value must be the complete MCP Server URL: `https://mcp.xnurta.com/mcp`. Compliant MCP OAuth clients handle this automatically; users do not need to configure it or append `resource` to the Server URL. Custom clients and manual DCR + PKCE implementations must support it explicitly.
 
 #### MCP Token
 

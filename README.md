@@ -145,7 +145,7 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 
 ### Desktop apps
 
-> In regular Claude Desktop or Claude on the web, use a [Custom Connector](docs/installation.md#claude-desktop--claude-claudeai-custom-connector-no-configuration-files) for Chat. A Custom Connector provides MCP Tools only; add Skills separately under **Settings → Skills**. The marketplace flow below applies only to Claude Code Desktop.
+> In regular Claude Desktop or Claude on the web, use a [Custom Connector](docs/installation.md#claude-desktop--claude-claudeai-custom-connector-no-configuration-files) for Chat. A Custom Connector provides MCP Tools only; add Skills separately under **Settings → Skills**. On Claude Team or Enterprise, an organization Owner or Primary Owner must add the connector first. The marketplace flow below applies only to Claude Code Desktop.
 
 #### Claude Code Desktop
 
