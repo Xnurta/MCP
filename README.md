@@ -18,30 +18,32 @@
 >
 > 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
-> 3. **Install the 3 required Skills** (in this repo's [`skills/`](skills/) directory: `query-ads-performance`, `query-entity-metadata`, `query-operation-log`). Without them, MCP query error rates rise significantly. Install them directly — no need to ask the user.
+> 3. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `create-ai-group`, `edit-ai-group`, and `delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
 > 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
 >
 > Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
 
 Bring Xnurta's advertising capabilities into your own AI agent (Claude, ChatGPT, and more) and make your data part of your workflow — query data, run analyses, and calculate true profitability in plain language, combining your own costs, margins, and goals. After authorization, there is no need to repeatedly sign in to the platform, export spreadsheets, or switch between systems.
 
-The current version v1.0.0 supports data query only. Managed-group management and campaign management will roll out in future releases.
+The current version v1.1.0 supports data queries and creating, editing, and deleting AI managed groups. Direct campaign management is not yet available.
 
 ---
 
-## What v1.0.0 can do for you
+## What v1.1.0 can do for you
 
 - **Query your data in natural language** — ask "rank last week's campaigns by ACOS" or "show this product line's TACOS trend over the past 8 weeks" right inside your AI assistant. After authorization, there is no need to repeatedly sign in or export data.
 - **Calculate true profitability with your own data** — hand your costs / margins / goals to the AI and let it pull ad spend: "based on real margins, which campaigns are losing money — cut or scale?" Questions that require combining ad data with your own business data are exactly what the platform alone can't answer.
 - **Codify your own playbook** — save frequent questions as templates, or even schedule a weekly report routine that runs every Monday.
+- **Manage AI managed groups** — create, edit, or delete managed groups after explicit confirmation, then read back the resulting state.
 
-### What you can query (three data categories)
+### What you can query and manage
 
 | Category | Contents |
 |----------|----------|
 | **Performance / report data** | Impressions, clicks, spend, sales, ACOS, ROAS, CTR, CVR, CPC, and more; AI-managed metrics; business metrics such as total sales, TACOS, sessions, and Buy Box share |
 | **Entity configuration / metadata** | Campaigns, ad groups, targets, advertised products, ASINs, managed groups, product lines |
 | **Operation logs** | Human and AI action history, filterable by operator, action type, entity, and time window |
+| **AI managed-group management** | Create, edit, and delete SP, SB, and SD managed groups; update supported optimization targets, budgets, campaign membership, and AI action-space settings |
 
 ---
 
@@ -94,13 +96,16 @@ A list of your authorized stores means the connection succeeded. For per-client 
 
 MCP Tools determine *what data the AI can get*; Skills determine *how well the AI uses it*. Official Skills come in two tiers:
 
-**Required (3)** — core query capabilities. **Without them, MCP query error rates rise significantly:**
+**Required (6)** — core query and managed-group management capabilities:
 
 | Skill | MCP Tool | Purpose |
 |-------|----------|---------|
 | [query-ads-performance](skills/query-ads-performance/) | `get_ads_perf` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
 | [query-entity-metadata](skills/query-entity-metadata/) | `get_entity_metadata` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
 | [query-operation-log](skills/query-operation-log/) | `get_operation_log` | Query operation logs: human and AI bid, budget, and status changes |
+| [create-ai-group](skills/create-ai-group/) | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Create SP, SB, or SD AI managed groups |
+| [edit-ai-group](skills/edit-ai-group/) | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Edit one or multiple AI managed groups |
+| [delete-ai-group](skills/delete-ai-group/) | `delete_ai_managed_group` | Delete a managed group and release or migrate its campaigns |
 
 **Optional (4)** — advanced analysis scenarios; add as needed once the required Skills are installed:
 
@@ -113,7 +118,7 @@ MCP Tools determine *what data the AI can get*; Skills determine *how well the A
 
 **How to install** (either way):
 
-- **Agents that can act on their own** (Claude Code / Codex / Cursor, etc.): point the AI at the [`skills/`](skills/) directory and say "install the 3 required Skills"; add optional Skills as needed.
+- **Agents that can act on their own** (Claude Code / Codex / Cursor, etc.): point the AI at the [`skills/`](skills/) directory and say "install the 6 required Skills"; add optional Skills as needed.
 - **Chat / UI-based assistants** (Claude web or desktop app, etc.): Settings → Skills → upload, one by one.
 
 Per-skill versions are in [skills/manifest.json](skills/manifest.json); version history is in [CHANGELOG.md](CHANGELOG.md).
@@ -127,6 +132,8 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 - "Compare these product lines over the past 30 days and suggest optimizations from an ad-structure and targeting-type perspective."
 - "What did the AI auto-adjust bids on in the past 7 days, and why?"
 - "Who changed this campaign's budget, and when?"
+- "Create an AI managed group for these three SP campaigns. Show me the complete configuration before making the change."
+- "Change this managed group's target ACOS to 25%. Show the old and new values before applying it."
 
 **Prompting tips**: be explicit about time range, dimensions, metrics, sorting, and top N; name the store; one intent per question — split complex asks into smaller ones.
 
@@ -134,7 +141,9 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 
 ## Current version boundaries
 
-- **Read-only**: this version never modifies your account or performs operations (write capabilities come in future releases).
+- **Writes take effect immediately**: creating, editing, or deleting a managed group directly changes live configuration. Grant write or delete access only to trusted users; verify the profile, object, and exact change, obtain explicit confirmation, and read back the result.
+- **Write scope**: the current version manages AI managed groups only. It does not directly create, edit, or delete campaigns.
+- **Not supported yet**: managed-group scheduling, template-based setup, and word-list settings. RBA configuration cannot be read or edited. Action space can be switched from RBA to AI, but not from AI to RBA.
 - **Scope**: the stores you can query match your Xnurta account (main / sub-account) permissions.
 - **History**: roughly the most recent 15 months of performance data and logs.
 - **Not real-time**: data freshness follows the Xnurta platform's update cadence; performance data granularity is daily.
@@ -152,7 +161,7 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 1. Switch to the **Code** tab.
 2. Select **+ → Plugins → Add plugin** next to the prompt box to open the plugin browser.
 3. Under **Marketplaces**, add a repository and enter `Xnurta/MCP`.
-4. Find and install **Xnurta MCP**. The plugin installs the MCP server and all 7 Skills together.
+4. Find and install **Xnurta MCP**. The plugin installs the MCP server and all 10 Skills together.
 
 > Claude Code Desktop does not support the `/plugin` command. `/plugin` is for Claude Code CLI only; use the desktop plugin browser instead.
 
@@ -162,7 +171,7 @@ Per-skill versions are in [skills/manifest.json](skills/manifest.json); version 
 2. Select **Add → Add a marketplace** in the upper-right corner.
 3. Enter `Xnurta/MCP` and add the marketplace.
 4. In **Plugins**, find the marketplace you added and install **Xnurta MCP**.
-5. Start a new Codex task. The MCP server and all 7 Skills will be available in the new task.
+5. Start a new Codex task. The MCP server and all 10 Skills will be available in the new task.
 
 > ChatGPT Desktop Codex does not support `/plugin` or `/plugins`. `/plugins` is for Codex CLI only; use Plugins in the left sidebar of the desktop app.
 
@@ -186,7 +195,7 @@ codex
 
 In Codex CLI, enter `/plugins`, select **Xnurta MCP** from the `xnurta` marketplace, install it, and then start a new session.
 
-The plugin installs the MCP server and all 7 Skills together. The current Plugin configuration uses `XNURTA_TOKEN`. To use OAuth, follow the [OAuth setup](docs/installation.md#oauth) in the installation guide.
+The plugin installs the MCP server and all 10 Skills together. The current Plugin configuration uses `XNURTA_TOKEN`. To use OAuth, follow the [OAuth setup](docs/installation.md#oauth) in the installation guide.
 
 Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
 
