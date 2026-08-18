@@ -268,19 +268,19 @@ Skills live in this repo's [`skills/`](../skills/) directory, in two tiers:
 
 **Required (6)** — covering core queries and managed-group management:
 
-- `query-ads-performance` — ad performance queries
-- `query-entity-metadata` — entity configuration queries
-- `query-operation-log` — operation log queries
-- `create-ai-group` — create AI managed groups
-- `edit-ai-group` — edit one or multiple AI managed groups
-- `delete-ai-group` — delete AI managed groups
+- `xnurta-query-ads-performance` — ad performance queries
+- `xnurta-query-entity-metadata` — entity configuration queries
+- `xnurta-query-operation-log` — operation log queries
+- `xnurta-create-ai-group` — create AI managed groups
+- `xnurta-edit-ai-group` — edit one or multiple AI managed groups
+- `xnurta-delete-ai-group` — delete AI managed groups
 
 **Optional (4)** — advanced analysis scenarios; add as needed after the required ones (under [`skills/`](../skills/)):
 
-- `weekly-ads-report` — weekly ads report
-- `monthly-ads-report` — monthly ads report
-- `ads-structure-analysis` — ad structure analysis
-- `product-diagnosis` — product diagnosis
+- `xnurta-weekly-ads-report` — weekly ads report
+- `xnurta-monthly-ads-report` — monthly ads report
+- `xnurta-ads-structure-analysis` — ad structure analysis
+- `xnurta-product-diagnosis` — product diagnosis
 
 Pick the installation route that matches your assistant:
 

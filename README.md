@@ -18,7 +18,7 @@
 >
 > 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
-> 3. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `create-ai-group`, `edit-ai-group`, and `delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
+> 3. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
 > 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
 >
 > Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
@@ -100,21 +100,21 @@ MCP Tools determine *what data the AI can get*; Skills determine *how well the A
 
 | Skill | MCP Tool | Purpose |
 |-------|----------|---------|
-| [query-ads-performance](skills/query-ads-performance/) | `get_ads_perf` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
-| [query-entity-metadata](skills/query-entity-metadata/) | `get_entity_metadata` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
-| [query-operation-log](skills/query-operation-log/) | `get_operation_log` | Query operation logs: human and AI bid, budget, and status changes |
-| [create-ai-group](skills/create-ai-group/) | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Create SP, SB, or SD AI managed groups |
-| [edit-ai-group](skills/edit-ai-group/) | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Edit one or multiple AI managed groups |
-| [delete-ai-group](skills/delete-ai-group/) | `delete_ai_managed_group` | Delete a managed group and release or migrate its campaigns |
+| [xnurta-query-ads-performance](skills/xnurta-query-ads-performance/) | `get_ads_perf` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
+| [xnurta-query-entity-metadata](skills/xnurta-query-entity-metadata/) | `get_entity_metadata` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
+| [xnurta-query-operation-log](skills/xnurta-query-operation-log/) | `get_operation_log` | Query operation logs: human and AI bid, budget, and status changes |
+| [xnurta-create-ai-group](skills/xnurta-create-ai-group/) | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Create SP, SB, or SD AI managed groups |
+| [xnurta-edit-ai-group](skills/xnurta-edit-ai-group/) | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Edit one or multiple AI managed groups |
+| [xnurta-delete-ai-group](skills/xnurta-delete-ai-group/) | `delete_ai_managed_group` | Delete a managed group and release or migrate its campaigns |
 
 **Optional (4)** — advanced analysis scenarios; add as needed once the required Skills are installed:
 
 | Skill | Purpose |
 |-------|---------|
-| [weekly-ads-report](skills/weekly-ads-report/) | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomalies, top movers, next-week actions |
-| [monthly-ads-report](skills/monthly-ads-report/) | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis |
-| [ads-structure-analysis](skills/ads-structure-analysis/) | Structure analysis: locate structural mismatches across campaign type / marketplace / portfolio dimensions |
-| [product-diagnosis](skills/product-diagnosis/) | Product diagnosis: ASIN health tiering, variant comparison, keep/optimize/cut recommendations |
+| [xnurta-weekly-ads-report](skills/xnurta-weekly-ads-report/) | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomalies, top movers, next-week actions |
+| [xnurta-monthly-ads-report](skills/xnurta-monthly-ads-report/) | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis |
+| [xnurta-ads-structure-analysis](skills/xnurta-ads-structure-analysis/) | Structure analysis: locate structural mismatches across campaign type / marketplace / portfolio dimensions |
+| [xnurta-product-diagnosis](skills/xnurta-product-diagnosis/) | Product diagnosis: ASIN health tiering, variant comparison, keep/optimize/cut recommendations |
 
 **How to install** (either way):
 

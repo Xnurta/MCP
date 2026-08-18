@@ -9,12 +9,12 @@ Official Skills for use with Xnurta MCP, in two tiers:
 
 | Skill | Version | MCP Tool | Scope | Purpose |
 |-------|---------|----------|-------|---------|
-| [query-ads-performance](query-ads-performance/) | 1.0.0 | `get_ads_perf` | `amazon_sa:performance:read` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
-| [query-entity-metadata](query-entity-metadata/) | 1.1.0 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
-| [query-operation-log](query-operation-log/) | 1.1.0 | `get_operation_log` | `amazon_sa:ads_logs:read` | Query operation logs: human and AI bid, budget, and status changes |
-| [create-ai-group](create-ai-group/) | 1.0.0 | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Create SP, SB, or SD AI managed groups |
-| [edit-ai-group](edit-ai-group/) | 1.0.0 | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Edit one or multiple AI managed groups |
-| [delete-ai-group](delete-ai-group/) | 1.0.0 | `delete_ai_managed_group` | Managed-group delete permission | Delete a managed group and release or migrate its campaigns |
+| [xnurta-query-ads-performance](xnurta-query-ads-performance/) | 1.0.0 | `get_ads_perf` | `amazon_sa:performance:read` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
+| [xnurta-query-entity-metadata](xnurta-query-entity-metadata/) | 1.1.0 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
+| [xnurta-query-operation-log](xnurta-query-operation-log/) | 1.1.0 | `get_operation_log` | `amazon_sa:ads_logs:read` | Query operation logs: human and AI bid, budget, and status changes |
+| [xnurta-create-ai-group](xnurta-create-ai-group/) | 1.0.0 | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Create SP, SB, or SD AI managed groups |
+| [xnurta-edit-ai-group](xnurta-edit-ai-group/) | 1.0.0 | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Edit one or multiple AI managed groups |
+| [xnurta-delete-ai-group](xnurta-delete-ai-group/) | 1.0.0 | `delete_ai_managed_group` | Managed-group delete permission | Delete a managed group and release or migrate its campaigns |
 
 ## Optional Skills
 
@@ -22,10 +22,10 @@ Advanced analyses built on the required query Skills — add as needed once thos
 
 | Skill | Version | Purpose |
 |-------|---------|---------|
-| [weekly-ads-report](weekly-ads-report/) | 1.0.0 | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomaly summary, top movers, next-week actions |
-| [monthly-ads-report](monthly-ads-report/) | 1.0.0 | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis, next-month recommendations |
-| [ads-structure-analysis](ads-structure-analysis/) | 1.0.0 | Structure analysis: break down spend and efficiency by campaign type / marketplace / portfolio / weekday and locate structural mismatches |
-| [product-diagnosis](product-diagnosis/) | 1.0.0 | Product diagnosis: ASIN health tiering, variant comparison, diagnostic cards for underperformers, keep/optimize/cut recommendations |
+| [xnurta-weekly-ads-report](xnurta-weekly-ads-report/) | 1.0.0 | Weekly ads report: KPI card with WoW comparison, 7-day trend, anomaly summary, top movers, next-week actions |
+| [xnurta-monthly-ads-report](xnurta-monthly-ads-report/) | 1.0.0 | Monthly ads report: full-month KPIs (MoM + YoY), structural breakdown, product and keyword analysis, next-month recommendations |
+| [xnurta-ads-structure-analysis](xnurta-ads-structure-analysis/) | 1.0.0 | Structure analysis: break down spend and efficiency by campaign type / marketplace / portfolio / weekday and locate structural mismatches |
+| [xnurta-product-diagnosis](xnurta-product-diagnosis/) | 1.0.0 | Product diagnosis: ASIN health tiering, variant comparison, diagnostic cards for underperformers, keep/optimize/cut recommendations |
 
 ## Versions
 
@@ -48,16 +48,16 @@ Advanced analyses built on the required query Skills — add as needed once thos
 ```
 skills/
 ├── manifest.json              # machine-readable version list
-├── query-ads-performance/     # required
-├── query-entity-metadata/     # required
-├── query-operation-log/       # required
-├── create-ai-group/           # required
-├── edit-ai-group/             # required
-├── delete-ai-group/           # required
-├── weekly-ads-report/         # optional
-├── monthly-ads-report/        # optional
-├── ads-structure-analysis/    # optional
-└── product-diagnosis/         # optional
+├── xnurta-query-ads-performance/     # required
+├── xnurta-query-entity-metadata/     # required
+├── xnurta-query-operation-log/       # required
+├── xnurta-create-ai-group/           # required
+├── xnurta-edit-ai-group/             # required
+├── xnurta-delete-ai-group/           # required
+├── xnurta-weekly-ads-report/         # optional
+├── xnurta-monthly-ads-report/        # optional
+├── xnurta-ads-structure-analysis/    # optional
+└── xnurta-product-diagnosis/         # optional
 ```
 
 Each Skill is a self-contained directory with a `SKILL.md` (name / version / description and methodology) and `references/` (field references, example queries, etc.).
