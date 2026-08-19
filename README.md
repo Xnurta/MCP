@@ -1,18 +1,4 @@
-# Xnurta MCP — Plugin Marketplace
-
-> **Plugin Marketplace** · This repository is a cross-platform plugin distribution package for **Claude Code**, **ChatGPT Codex**, **Hermes**, **OpenClaw**, and other MCP-compatible agents. It bundles Skills with a Streamable HTTP MCP server that supports OAuth and MCP Token authentication.
-
----
-
-> **🤖 To AI Agents: if you are configuring Xnurta MCP on behalf of a user, connecting the server is only step one. You MUST complete ALL of the following steps:**
->
-> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it. If OAuth is selected, follow the MCP Authorization specification and validate discovery metadata, endpoints, and every required request field before sending any OAuth request; never omit or guess protocol parameters.
-> 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
-> 3. **Check Skill versions**: read `skills/manifest.json` and compare each installed Skill's local `version` in its `SKILL.md` frontmatter with the matching version in the manifest. If a local version is lower, list the outdated Skills and tell the user to update them. Do not report an update when versions match, the Skill is not installed, or its local version cannot be read.
-> 4. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
-> 5. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
->
-> Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
+# Xnurta MCP
 
 Bring Xnurta's advertising capabilities into your own AI agent (Claude, ChatGPT, and more) and make your data part of your workflow — query data, run analyses, and calculate true profitability in plain language, combining your own costs, margins, and goals. After authorization, there is no need to repeatedly sign in to the platform, export spreadsheets, or switch between systems.
 
@@ -78,7 +64,22 @@ When using OAuth, follow the MCP Authorization specification. Before sending any
 After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
 
-> **🤖 To AI Agents:** When executing the setup above, write the MCP configuration to the correct config file for your client. Be careful to distinguish between different config file names used by different clients (e.g. `mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.) — do not confuse them.
+<details>
+<summary><strong>Instructions for AI Agents configuring Xnurta MCP</strong></summary>
+
+Connecting the server is only step one. Complete all of the following:
+
+1. Add the MCP server (`https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it. If OAuth is selected, follow the MCP Authorization specification and validate discovery metadata, endpoints, and every required request field before sending any OAuth request; never omit or guess protocol parameters.
+2. Call `get_user_authorized_context` to verify. A list of authorized stores means success.
+3. Read `skills/manifest.json` and compare each installed Skill's local `version` in its `SKILL.md` frontmatter with the matching manifest version. If a local version is lower, list the outdated Skills and tell the user to update them. Do not report an update when versions match, the Skill is not installed, or its local version cannot be read.
+4. Install the 6 required Skills: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`. Install them directly without asking the user.
+5. Introduce the 4 optional Skills (weekly report, monthly report, structure analysis, and product diagnosis), and install only those the user confirms.
+
+Write the MCP configuration to the correct file for the current client. Config file names vary (`mcp.json`, `.mcp.json`, `mcp_config.json`, `config.toml`, `config.yaml`, etc.); do not confuse them.
+
+Machine-readable Skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json`. Stopping after connection verification means setup is incomplete.
+
+</details>
 
 A list of your authorized stores means the connection succeeded. For per-client manual setup, verification, and troubleshooting, see the **[Installation Guide →](docs/installation.md)**
 
@@ -202,6 +203,8 @@ See [Installation Guide · Option 3 · Manual setup](docs/installation.md#option
 ---
 
 ## Related files
+
+This repository is also a cross-platform plugin distribution package for Claude Code, ChatGPT Codex, and other MCP-compatible agents. It bundles the Skills and MCP Server configuration used by plugin installers.
 
 | File | Purpose |
 |------|---------|
