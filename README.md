@@ -1,16 +1,6 @@
 # Xnurta MCP — Plugin Marketplace
 
 > **Plugin Marketplace** · This repository is a cross-platform plugin distribution package for **Claude Code**, **ChatGPT Codex**, **Hermes**, **OpenClaw**, and other MCP-compatible agents. It bundles Skills with a Streamable HTTP MCP server that supports OAuth and MCP Token authentication.
->
-> | File | Purpose |
-> |------|---------|
-> | [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) | Claude Code marketplace catalog |
-> | [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Claude Code plugin descriptor |
-> | [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | Codex marketplace catalog |
-> | [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Codex plugin descriptor |
-> | [`.mcp.json`](.mcp.json) | Claude Code MCP server configuration using `${XNURTA_TOKEN}` |
-> | [`docs/installation.md`](docs/installation.md) | Detailed installation and troubleshooting guide |
-> | [`skills/manifest.json`](skills/manifest.json) | Machine-readable Skills catalog |
 
 ---
 
@@ -199,8 +189,6 @@ In Codex CLI, enter `/plugins`, select **Xnurta MCP** from the `xnurta` marketpl
 
 The plugin installs the MCP server and all 10 Skills together. The current Plugin configuration uses `XNURTA_TOKEN`. To use OAuth, follow the [OAuth setup](docs/installation.md#oauth) in the installation guide.
 
-Marketplaces: [Claude Code](.claude-plugin/marketplace.json) · [Codex](.agents/plugins/marketplace.json); plugin descriptors: [Claude Code](.claude-plugin/plugin.json) · [Codex](.codex-plugin/plugin.json)
-
 ### Generic MCP clients
 
 See [Installation Guide · Option 3 · Manual setup](docs/installation.md#option-3--manual-setup) for OpenClaw, Hermes, Cursor, Cline, Cherry Studio, and other clients.
@@ -210,3 +198,17 @@ See [Installation Guide · Option 3 · Manual setup](docs/installation.md#option
 ## Security note
 
 > OAuth and MCP Token access are both limited by your Xnurta account permissions, authorized scope, and store range. Revoke OAuth access when it is no longer needed. Keep MCP Tokens secure and use environment variables where possible. If you notice suspicious access, revoke the authorization or disable the Token immediately.
+
+---
+
+## Related files
+
+| File | Purpose |
+|------|---------|
+| [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) | Claude Code marketplace catalog |
+| [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) | Claude Code plugin descriptor |
+| [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) | Codex marketplace catalog |
+| [`.codex-plugin/plugin.json`](.codex-plugin/plugin.json) | Codex plugin descriptor |
+| [`.mcp.json`](.mcp.json) | Claude Code MCP server configuration using `${XNURTA_TOKEN}` |
+| [`docs/installation.md`](docs/installation.md) | Detailed installation and troubleshooting guide |
+| [`skills/manifest.json`](skills/manifest.json) | Machine-readable Skills catalog |
