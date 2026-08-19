@@ -46,6 +46,7 @@ https://github.com/Xnurta/MCP
 Xnurta MCP supports both OAuth and MCP Token authentication.
 Please check which authorization methods the current client supports, briefly explain when each method is appropriate, and ask me to confirm which method to use before starting authorization.
 If I choose OAuth, open the sign-in page when authorization is required so I can complete it.
+When using OAuth, follow the MCP Authorization specification. Before sending any OAuth request, validate the discovered endpoints and all required fields; do not omit or guess protocol parameters.
 
 After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
@@ -114,6 +115,8 @@ The plugin installs the MCP server and all 10 Skills together. The current Plugi
 
 #### OAuth
 
+> **🤖 OAuth preflight for AI Agents and custom clients:** Follow the [MCP Authorization specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) and complete authorization-server discovery before constructing requests. Before sending any authorization or token request, validate the discovered endpoint and every field required by the selected flow. In particular, send `resource=https://mcp.xnurta.com/mcp` in both requests, use Authorization Code with PKCE (`S256`) and a matching `code_verifier`, use the exact registered `redirect_uri`, and generate and verify `state`. If required metadata or a required field is missing or inconsistent, stop and report the issue instead of guessing or sending a partial request. Standard MCP clients normally handle this automatically; do not ask users to append OAuth parameters to the Server URL.
+
 ##### Claude Desktop & Claude (claude.ai): Custom Connector (no configuration files)
 
 Claude Desktop and Claude on the web can connect directly to a remote MCP server through a Custom Connector. You do not need to edit `mcp.json`, install Node.js, or run `npx`.
@@ -155,7 +158,7 @@ https://mcp.xnurta.com/mcp
 
 Select **OAuth**, **Sign in**, or **Authenticate**, depending on the wording used by your client, and complete authorization in your browser.
 
-> **OAuth compatibility:** The client must follow the MCP OAuth specification and include the `resource` parameter in both the authorization request and token request. Its value must be the complete MCP Server URL: `https://mcp.xnurta.com/mcp`. Compliant MCP OAuth clients handle this automatically; users do not need to configure it or append `resource` to the Server URL. Custom clients and manual DCR + PKCE implementations must support it explicitly.
+> **OAuth compatibility:** The client must include `resource` in both the authorization request and token request, using the complete MCP Server URL: `https://mcp.xnurta.com/mcp`. Compliant MCP OAuth clients handle this automatically; users do not need to configure it or append `resource` to the Server URL. Custom clients and manual DCR + PKCE implementations must support it explicitly and follow the preflight requirements above.
 
 #### MCP Token
 

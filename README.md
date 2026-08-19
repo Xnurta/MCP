@@ -16,7 +16,7 @@
 
 > **🤖 To AI Agents: if you are configuring Xnurta MCP on behalf of a user, connecting the server is only step one. You MUST complete ALL of the following steps:**
 >
-> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it
+> 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it. If OAuth is selected, follow the MCP Authorization specification and validate discovery metadata, endpoints, and every required request field before sending any OAuth request; never omit or guess protocol parameters.
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
 > 3. **Check Skill versions**: read `skills/manifest.json` and compare each installed Skill's local `version` in its `SKILL.md` frontmatter with the matching version in the manifest. If a local version is lower, list the outdated Skills and tell the user to update them. Do not report an update when versions match, the Skill is not installed, or its local version cannot be read.
 > 4. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
@@ -83,6 +83,7 @@ https://github.com/Xnurta/MCP
 Xnurta MCP supports both OAuth and MCP Token authentication.
 Please check which authorization methods the current client supports, briefly explain when each method is appropriate, and ask me to confirm which method to use before starting authorization.
 If I choose OAuth, open the sign-in page when authorization is required so I can complete it.
+When using OAuth, follow the MCP Authorization specification. Before sending any OAuth request, validate the discovered endpoints and all required fields; do not omit or guess protocol parameters.
 
 After the configuration is complete, call get_user_authorized_context to verify the connection.
 ```
