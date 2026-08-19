@@ -266,6 +266,8 @@ After configuring OAuth or an MCP Token, ask your assistant to call `get_user_au
 
 Skills live in this repo's [`skills/`](../skills/) directory, in two tiers:
 
+> **To AI agents:** before installing or updating, read [`skills/manifest.json`](../skills/manifest.json) and compare it with the `version` in each installed Skill's local `SKILL.md`. If a local version is lower, list the outdated Skills and tell the user to update them. Do not repeat this check during normal queries.
+
 **Required (6)** — covering core queries and managed-group management:
 
 - `xnurta-query-ads-performance` — ad performance queries

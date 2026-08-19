@@ -10,8 +10,8 @@ Official Skills for use with Xnurta MCP, in two tiers:
 | Skill | Version | MCP Tool | Scope | Purpose |
 |-------|---------|----------|-------|---------|
 | [xnurta-query-ads-performance](xnurta-query-ads-performance/) | 1.0.0 | `get_ads_perf` | `amazon_sa:performance:read` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
-| [xnurta-query-entity-metadata](xnurta-query-entity-metadata/) | 1.1.0 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
-| [xnurta-query-operation-log](xnurta-query-operation-log/) | 1.1.0 | `get_operation_log` | `amazon_sa:ads_logs:read` | Query operation logs: human and AI bid, budget, and status changes |
+| [xnurta-query-entity-metadata](xnurta-query-entity-metadata/) | 1.1.1 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
+| [xnurta-query-operation-log](xnurta-query-operation-log/) | 1.1.1 | `get_operation_log` | `amazon_sa:ads_logs:read` | Query operation logs: human and AI bid, budget, and status changes |
 | [xnurta-create-ai-group](xnurta-create-ai-group/) | 1.0.0 | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Create SP, SB, or SD AI managed groups |
 | [xnurta-edit-ai-group](xnurta-edit-ai-group/) | 1.0.0 | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Edit one or multiple AI managed groups |
 | [xnurta-delete-ai-group](xnurta-delete-ai-group/) | 1.0.0 | `delete_ai_managed_group` | Managed-group delete permission | Delete a managed group and release or migrate its campaigns |
@@ -36,6 +36,7 @@ Advanced analyses built on the required query Skills — add as needed once thos
   ```
 
 - **For humans**: each Skill's version is in the `version` field of its `SKILL.md` frontmatter; overall history is in [CHANGELOG.md](../CHANGELOG.md).
+- **For AI agents**: when installing, updating, or configuring Skills from this repository, compare each installed Skill's local `SKILL.md` `version` with the matching entry in the manifest above. If the local version is lower, list the outdated Skills and tell the user to update them. Do not repeat this check during normal MCP queries.
 - On every release, `manifest.json` and the frontmatter are updated together, with a matching git tag / GitHub Release.
 
 ## Installation

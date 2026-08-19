@@ -18,8 +18,9 @@
 >
 > 1. Add the MCP server (URL: `https://mcp.xnurta.com/mcp`, Streamable HTTP). Check which authorization methods the client supports, explain when OAuth and MCP Token are appropriate, and ask the user to confirm before configuring it
 > 2. Call `get_user_authorized_context` to verify — a list of authorized stores means success
-> 3. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
-> 4. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
+> 3. **Check Skill versions**: read `skills/manifest.json` and compare each installed Skill's local `version` in its `SKILL.md` frontmatter with the matching version in the manifest. If a local version is lower, list the outdated Skills and tell the user to update them. Do not report an update when versions match, the Skill is not installed, or its local version cannot be read.
+> 4. **Install the 6 required Skills** (in this repo's [`skills/`](skills/) directory: the 3 query Skills plus `xnurta-create-ai-group`, `xnurta-edit-ai-group`, and `xnurta-delete-ai-group`). They govern core query and managed-group write behavior. Install them directly — no need to ask the user.
+> 5. Introduce each of the 4 Skills marked optional under [`skills/`](skills/) (weekly report, monthly report, structure analysis, product diagnosis) and **ask the user whether to install them**. Install only after the user confirms.
 >
 > Machine-readable skills list: `https://raw.githubusercontent.com/Xnurta/MCP/main/skills/manifest.json` (`required: true` marks required skills). Stopping after steps 1–2 means the setup is incomplete.
 

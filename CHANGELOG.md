@@ -4,6 +4,12 @@ This file tracks version changes for Xnurta MCP Skills and the accompanying docu
 
 ## [Unreleased]
 
+### Changed
+
+- **xnurta-query-entity-metadata** `1.1.0` → `1.1.1`.
+- **xnurta-query-operation-log** `1.1.0` → `1.1.1`.
+- Added Skill version-check guidance: during installation or updates, AI agents compare local `SKILL.md` versions with the remote `manifest.json` and tell the user when installed Skills are outdated.
+
 ## [1.1.0] - 2026-08-18
 
 Adds managed-group write support and aligns the query Skills with the latest MCP Tool documentation.
