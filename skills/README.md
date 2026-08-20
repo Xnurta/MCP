@@ -10,11 +10,11 @@ Official Skills for use with Xnurta MCP, in two tiers:
 | Skill | Version | MCP Tool | Scope | Purpose |
 |-------|---------|----------|-------|---------|
 | [xnurta-query-ads-performance](xnurta-query-ads-performance/) | 1.0.0 | `get_ads_perf` | `amazon_sa:performance:read` | Query ad performance metrics: spend, ACOS, ROAS, trends, rankings, period comparison |
-| [xnurta-query-entity-metadata](xnurta-query-entity-metadata/) | 1.1.1 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
+| [xnurta-query-entity-metadata](xnurta-query-entity-metadata/) | 1.1.2 | `get_entity_metadata` | `amazon_sa:ads_configuration:read` | Query entity configuration: campaign / ad group / target / ASIN / managed group names, status, settings |
 | [xnurta-query-operation-log](xnurta-query-operation-log/) | 1.1.1 | `get_operation_log` | `amazon_sa:ads_logs:read` | Query operation logs: human and AI bid, budget, and status changes |
-| [xnurta-create-ai-group](xnurta-create-ai-group/) | 1.0.1 | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Create SP, SB, or SD AI managed groups |
-| [xnurta-edit-ai-group](xnurta-edit-ai-group/) | 1.0.1 | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Edit one or multiple AI managed groups |
-| [xnurta-delete-ai-group](xnurta-delete-ai-group/) | 1.0.0 | `delete_ai_managed_group` | Managed-group delete permission | Delete a managed group and release or migrate its campaigns |
+| [xnurta-create-ai-group](xnurta-create-ai-group/) | 1.0.2 | `create_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Create SP, SB, or SD AI managed groups |
+| [xnurta-edit-ai-group](xnurta-edit-ai-group/) | 1.0.2 | `edit_sd_ai_managed_group` / `save_sp_sb_ai_managed_group` | Managed-group write permission | Edit one or multiple AI managed groups |
+| [xnurta-delete-ai-group](xnurta-delete-ai-group/) | 1.0.1 | `delete_ai_managed_group` | Managed-group delete permission | Delete a managed group and release or migrate its campaigns |
 
 ## Optional Skills
 

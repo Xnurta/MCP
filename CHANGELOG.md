@@ -10,6 +10,10 @@ This file tracks version changes for Xnurta MCP Skills and the accompanying docu
 - **xnurta-query-operation-log** `1.1.0` → `1.1.1`.
 - **xnurta-create-ai-group** `1.0.0` → `1.0.1`: added business-term disambiguation, a mandatory clarification gate before writes, and corrected create-time budget and target mappings.
 - **xnurta-edit-ai-group** `1.0.0` → `1.0.1`: added business-term disambiguation, clarification separate from write authorization, and path-specific status handling.
+- **xnurta-query-entity-metadata** `1.1.1` → `1.1.2`: documented managed-group total-budget rollups and their proportional campaign-budget behavior.
+- **xnurta-create-ai-group** `1.0.1` → `1.0.2`: clarified group budget, performance-budget increase caps, budget reallocation scope, and create-time confirmation requirements.
+- **xnurta-edit-ai-group** `1.0.1` → `1.0.2`: added the complete fixed/percentage and per-campaign/group budget model, reliable enabled-campaign lookup, impact preview, and ambiguity handling.
+- **xnurta-delete-ai-group** `1.0.0` → `1.0.1`: stopped relying on unsupported campaign `aiGroupId` server filtering; campaign membership is now verified after full pagination and local filtering.
 - Added Skill version-check guidance: during installation or updates, AI agents compare local `SKILL.md` versions with the remote `manifest.json` and tell the user when installed Skills are outdated.
 - Added an OAuth preflight requirement for AI agents: follow MCP authorization discovery and validate all protocol-required request fields before sending an OAuth request.
 
