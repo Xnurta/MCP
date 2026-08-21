@@ -14,6 +14,11 @@ This file tracks version changes for Xnurta MCP Skills and the accompanying docu
 - **xnurta-create-ai-group** `1.0.1` → `1.0.2`: clarified group budget, performance-budget increase caps, budget reallocation scope, and create-time confirmation requirements.
 - **xnurta-edit-ai-group** `1.0.1` → `1.0.2`: added the complete fixed/percentage and per-campaign/group budget model, reliable enabled-campaign lookup, impact preview, and ambiguity handling.
 - **xnurta-delete-ai-group** `1.0.0` → `1.0.1`: stopped relying on unsupported campaign `aiGroupId` server filtering; campaign membership is now verified after full pagination and local filtering.
+- **xnurta-create-ai-group** `1.0.2` → `1.0.3`: added Strict ACOS / ACOS priority mode guidance (`bidPerformanceStrictAcosStatus` — SP only; preconditions `targetType=2` + `bidPerformanceStatus=1` + `aiPersonality>=3`; Auto Pacing precedence; tradeoff must be confirmed) and disambiguation distinguishing it from setting a target ACOS.
+- **xnurta-edit-ai-group** `1.0.2` → `1.0.3`: same Strict ACOS guidance plus a disambiguation cross-reference.
+- **xnurta-edit-ai-group** `1.0.3` → `1.0.4`: switched the budget-cap preview's enabled-campaign lookup to server-side `aiGroupId` filtering (campaign supports it), replacing the earlier full-pull + local-filter approach.
+- **xnurta-delete-ai-group** `1.0.1` → `1.0.2`: switched campaign-list capture to server-side `aiGroupId` filtering — **reverting the 1.0.1 local-filter approach**, since campaign `aiGroupId` filtering is supported per the sparkxads API.
+- **xnurta-query-entity-metadata** `1.1.2` → `1.1.3`: clarified that for the campaign entity **every return field is filterable** (all return fields, no exceptions — including `aiGroupId`, `portfolioId`, and the `campaign*Date` fields).
 - Added Skill version-check guidance: during installation or updates, AI agents compare local `SKILL.md` versions with the remote `manifest.json` and tell the user when installed Skills are outdated.
 - Added an OAuth preflight requirement for AI agents: follow MCP authorization discovery and validate all protocol-required request fields before sending an OAuth request.
 
